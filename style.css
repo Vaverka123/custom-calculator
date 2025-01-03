@@ -1,0 +1,34 @@
+[data-theme="classic"] {
+  --input-bg: #2e2f2f;
+  --input-color: #ffffff;
+  --special-buttons-bg: #889696;
+  --numbers-bg: #acbdba;
+  --orange-buttons-bg: #f18f01;
+  --buttons-color: #cddddd;
+}
+
+[data-theme="mild"] {
+  --input-bg: #bad7f2;
+  --input-color: #545863;
+  --special-buttons-bg: #baf2bb;
+  --numbers-bg: #baf2d8;
+  --orange-buttons-bg: #f2bac9;
+  --buttons-color: #2e1e0f;
+}
+
+body {
+  margin: 0 auto;
+}
+
+.calculator {
+  display: grid;
+  grid-template-columns: repeat(1fr, 7);
+  grid-template-rows: repeat(1fr, 6);
+  grid-template-areas:
+    "input"
+    "mc mr m-plus m-minus sign-change percent division"
+    "x-squared x-cubed x-to-the-power-of-y seven eight nine multiply"
+    "functional 1-divided-by-x ten-powered-by-x four five six substruct"
+    "square-root-from-x cube-root-from-x yroot-from-x one two three add"
+    "color-theme ac zero dot equal";
+}
