@@ -1,160 +1,145 @@
-import {
-  Command,
-  AddCommand,
-  SubtractCommand,
-  MultiplyCommand,
-  DivideCommand,
-  PercentCommand,
-} from "/commands.js";
+let currentOperand = "";
+let previousOperand = "";
+let operation = undefined;
+let resultLocked = false;
 
-const display = document.getElementById("input");
+const calc = document.querySelector(".calculator");
 
-let leftOperand = null;
-let rightOperand = null;
-let operator = null;
-let operatorClicked = false;
-let history = [];
-
-function clearDisplay() {
-  display.value = "";
-  leftOperand = null;
-  rightOperand = null;
-  operator = null;
-  operatorClicked = false;
+function updateInput() {
+  const input = document.querySelector("#input");
+  input.value = currentOperand || "0";
 }
 
-function appendToDisplay(value) {
-  let currentValue = display.value;
-
-  if (value === "," && currentValue.includes(",")) return;
-
-  if (
-    ["+", "-", "*", "/", ",", "0", "00", "%"].includes(value) &&
-    currentValue === ""
-  )
-    return;
-
-  if (
-    ["+", "-", "*", "/", "%"].includes(value) &&
-    ["+", "-", "*", "/", "%"].includes(currentValue.slice(-1))
-  )
-    return;
-
-  display.value += value;
-}
-
-function handleOperator(op) {
-  if (leftOperand !== null && display.value !== "") {
-    calculate();
-  }
-
-  if (display.value === "") {
-    operator = op;
-    operatorClicked = true;
-    return;
-
-    if (leftOperand === null) {
-      leftOperand = parseFloat(display.value);
-      display.value = "";
-
-      operator = op;
-      display.value = "";
-    }
-
-    operatorClicked = true;
+function handleButtonClick(event) {
+  const value = event.target.getAttribute("data-value");
+  const type = event.target.getAttribute("data-type");
+  if (type === "number") {
+    appendNumber(value);
+  } else if (type === "sign-change") {
+    toggleSign();
+  } else if (type === "percent") {
+    caculatePercent();
+  } else if (type === "operator") {
+    chooseOperation(value);
+  } else if (type === "clear") {
+    clearInput();
+  } else if (type === "equal") {
+    calculateResult();
   }
 }
 
-function calculate() {
-  if (leftOperand !== null && operator !== null && display.value !== "") {
-    rightOperand = parseFloat(display.value);
+function appendNumber(number) {
+  if (resultLocked) {
+    clearInput();
+    resultLocked = false;
+  }
+  if (currentOperand === "" && number === "0" && number === "00") return;
+  if (number === "." && currentOperand.includes(".")) return;
+  currentOperand = currentOperand.toString() + number.toString();
+  updateInput();
+}
 
-    let command = null;
-    let result = null;
+function toggleSign() {
+  if (currentOperand === "") return;
+  currentOperand = (parseFloat(currentOperand) * -1).toString();
+  updateInput();
+}
 
-    switch (operator) {
-      case "+":
-        command = new AddCommand(leftOperand, rightOperand);
-        break;
-      case "-":
-        command = new SubtractCommand(leftOperand, rightOperand);
-        break;
-      case "*":
-        command = new MultiplyCommand(leftOperand, rightOperand);
-        break;
-      case "/":
-        command = new DivideCommand(leftOperand, rightOperand);
-        break;
-      case "%":
-        command = new PercentCommand(leftOperand, rightOperand);
-        break;
-      default:
+function caculatePercent() {
+  if (currentOperand === "") return;
+  currentOperand = (parseFloat(currentOperand) * 0.01).toString();
+  updateInput();
+  resultLocked = true;
+}
+
+function chooseOperation(op) {
+  if (currentOperand === "") {
+    operation = op;
+    return;
+  }
+  if (previousOperand !== "") calculateResult();
+  operation = op;
+  previousOperand = currentOperand;
+  currentOperand = "";
+  resultLocked = false;
+  console.log(
+    "op",
+    op,
+    "currentOperand",
+    currentOperand,
+    "previousOperand",
+    previousOperand
+  );
+}
+
+function calculateResult() {
+  if (!operation) return;
+
+  let result;
+  const prev = parseFloat(previousOperand);
+  const curr = parseFloat(currentOperand);
+
+  switch (operation) {
+    case "+":
+      result = prev + curr;
+      break;
+    case "-":
+      result = prev - curr;
+      break;
+    case "*":
+      result = prev * curr;
+      break;
+    case "/":
+      if (curr === 0) {
+        currentOperand = "undefined";
+        updateInput();
+        resultLocked = true;
         return;
-    }
-
-    try {
-      result = command.execute();
-      display.value = result;
-      history.push(command);
-    } catch (error) {
-      alert(error.message);
-      clearDisplay();
+      }
+      result = prev / curr;
+      break;
+    default:
       return;
-    }
-
-    leftOperand = result;
-    rightOperand = null;
-    // operator = null;
   }
+  currentOperand = result.toString();
+  operation = undefined;
+  previousOperand = "";
+  updateInput();
+  resultLocked = true;
 }
 
-document.getElementById("zero").onclick = function () {
-  appendToDisplay("0");
-};
-document.getElementById("double-zero").onclick = function () {
-  appendToDisplay("00");
-};
-document.getElementById("one").onclick = function () {
-  appendToDisplay("1");
-};
-document.getElementById("two").onclick = function () {
-  appendToDisplay("2");
-};
-document.getElementById("three").onclick = function () {
-  appendToDisplay("3");
-};
-document.getElementById("four").onclick = function () {
-  appendToDisplay("4");
-};
-document.getElementById("five").onclick = function () {
-  appendToDisplay("5");
-};
-document.getElementById("six").onclick = function () {
-  appendToDisplay("6");
-};
-document.getElementById("seven").onclick = function () {
-  appendToDisplay("7");
-};
-document.getElementById("eight").onclick = function () {
-  appendToDisplay("8");
-};
-document.getElementById("nine").onclick = function () {
-  appendToDisplay("9");
-};
-document.getElementById("dot").onclick = function () {
-  appendToDisplay(",");
+function clearInput() {
+  currentOperand = "";
+  previousOperand = "";
+  operation = undefined;
+  updateInput();
+}
+
+calc.addEventListener("click", (e) => {
+  if (!e.target.classList.contains("calc-button")) return;
+  handleButtonClick(e);
+});
+
+const setTheme = (theme) => {
+  document.documentElement.className = theme;
 };
 
-document.getElementById("ac").onclick = function () {
-  clearDisplay();
-};
+document.addEventListener("DOMContentLoaded", () => {
+  const themeButtons = document.querySelectorAll(
+    'button[data-type="color-theme"]'
+  );
 
-document.getElementById("add-sign").onclick = () => handleOperator("+");
-document.getElementById("substract").onclick = () => handleOperator("-");
-document.getElementById("multiply").onclick = () => handleOperator("*");
-document.getElementById("division").onclick = () => handleOperator("/");
-document.getElementById("percent").onclick = () => handleOperator("%");
-
-document.getElementById("equal").onclick = function () {
-  calculate();
-};
+  themeButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      if (button.querySelector("img").alt.includes("bright")) {
+        setTheme("bright");
+        button.style.display = "none";
+        button.nextElementSibling.style.display = "block";
+      } else if (button.querySelector("img").alt.includes("dark")) {
+        setTheme("dark");
+        button.style.display = "none";
+        button.previousElementSibling.style.display = "block";
+      }
+    });
+  });
+});

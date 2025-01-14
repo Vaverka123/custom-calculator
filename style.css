@@ -21,6 +21,13 @@ body {
   background-color: #cfee9e;
 }
 
+button {
+  outline: none;
+  padding: 0;
+  border: none;
+  background-color: none;
+}
+
 .calculator {
   margin: 0 auto;
   padding: 10px;

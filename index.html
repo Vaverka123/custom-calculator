@@ -9,87 +9,180 @@
   <body>
     <div class="calculator">
       <div class="input-container">
-        <input type="text" name="input" id="input" placeholder="0" />
+        <input type="text" name="input" id="input" placeholder="0" disabled />
       </div>
 
-      <div id="mc" class="calc-button special-buttons mc">MC</div>
-      <div id="mr" class="calc-button special-buttons mr">MR</div>
-      <div id="m-plus" class="calc-button special-buttons m-plus">M+</div>
-      <div id="m-minus" class="calc-button special-buttons m-minus">M-</div>
-      <div id="sign-change" class="calc-button special-buttons sign-change">
+      <button id="mc" class="calc-button special-buttons mc">MC</button>
+      <button id="mr" class="calc-button special-buttons mr">MR</button>
+      <button id="m-plus" class="calc-button special-buttons m-plus">M+</button>
+      <button id="m-minus" class="calc-button special-buttons m-minus">
+        M-
+      </button>
+      <button
+        class="calc-button special-buttons sign-change"
+        data-type="sign-change"
+      >
         +/-
-      </div>
-      <div id="percent" class="calc-button special-buttons percent">%</div>
-      <div id="division" class="calc-button orange-buttons division">/</div>
+      </button>
+      <button class="calc-button special-buttons percent" data-type="percent">
+        %
+      </button>
+      <button
+        class="calc-button orange-buttons division"
+        data-type="operator"
+        data-value="/"
+      >
+        /
+      </button>
 
-      <div id="x-squared" class="calc-button special-buttons x-squared">
+      <button id="x-squared" class="calc-button special-buttons x-squared">
         x&sup2;
-      </div>
-      <div id="x-cubed" class="calc-button special-buttons x-cubed">
+      </button>
+      <button id="x-cubed" class="calc-button special-buttons x-cubed">
         x&sup2;
-      </div>
-      <div
+      </button>
+      <button
         id="x-to-the-power-of-y"
         class="calc-button special-buttons x-to-the-power-of-y"
       >
         x
         <sup>y</sup>
-      </div>
-      <div id="seven" class="calc-button numbers seven">7</div>
-      <div id="eight" class="calc-button numbers eight">8</div>
-      <div id="nine" class="calc-button numbers nine">9</div>
-      <div id="multiply" class="calc-button orange-buttons multiply">*</div>
+      </button>
+      <button
+        class="calc-button numbers seven"
+        data-type="number"
+        data-value="7"
+      >
+        7
+      </button>
+      <button
+        class="calc-button numbers eight"
+        data-type="number"
+        data-value="8"
+      >
+        8
+      </button>
+      <button
+        class="calc-button numbers nine"
+        data-type="number"
+        data-value="9"
+      >
+        9
+      </button>
+      <button
+        class="calc-button orange-buttons multiply"
+        data-type="operator"
+        data-value="*"
+      >
+        *
+      </button>
 
-      <div id="functional" class="calc-button special-buttons functional">
+      <button id="functional" class="calc-button special-buttons functional">
         x!
-      </div>
-      <div
+      </button>
+      <button
         id="1-divided-by-x"
         class="calc-button special-buttons one-divided-by-x"
       >
         1/x
-      </div>
-      <div
+      </button>
+      <button
         id="ten-powered-by-x"
         class="calc-button special-buttons ten-powered-by-x"
       >
         10
         <sup>x</sup>
-      </div>
-      <div id="four" class="calc-button numbers four">4</div>
-      <div id="five" class="calc-button numbers five">5</div>
-      <div id="six" class="calc-button numbers six">6</div>
-      <div id="substract" class="calc-button orange-buttons substract">-</div>
+      </button>
+      <button
+        class="calc-button numbers four"
+        data-type="number"
+        data-value="4"
+      >
+        4
+      </button>
+      <button
+        class="calc-button numbers five"
+        data-type="number"
+        data-value="5"
+      >
+        5
+      </button>
+      <button class="calc-button numbers six" data-type="number" data-value="6">
+        6
+      </button>
+      <button
+        class="calc-button orange-buttons substract"
+        data-type="operator"
+        data-value="-"
+      >
+        -
+      </button>
 
-      <div
+      <button
         id="square-root-from-x"
         class="calc-button special-buttons square-root-from-x"
       >
         &Sqrt;x
-      </div>
-      <div
+      </button>
+      <button
         id="cube-root-from-x"
         class="calc-button special-buttons cube-root-from-x"
       >
         <sup>3</sup>
         &Sqrt;x
-      </div>
-      <div id="y-root-from-x" class="calc-button special-buttons y-root-from-x">
+      </button>
+      <button
+        id="y-root-from-x"
+        class="calc-button special-buttons y-root-from-x"
+      >
         <sup>y</sup>
         &Sqrt;x
-      </div>
-      <div id="one" class="calc-button numbers one">1</div>
-      <div id="two" class="calc-button numbers two">2</div>
-      <div id="three" class="calc-button numbers three">3</div>
-      <div id="add-sign" class="calc-button orange-buttons add-sign">+</div>
-
-      <div id="color-theme" class="color-theme">&#9788;</div>
-      <div id="ac" class="calc-button orange-buttons ac">AC</div>
-      <div id="ce" class="calc-button orange-buttons back">&#8617;</div>
-      <div id="double-zero" class="calc-button numbers double-zero">00</div>
-      <div id="zero" class="calc-button numbers zero">0</div>
-      <div id="dot" class="calc-button numbers dot">,</div>
-      <div id="equal" class="calc-button orange-buttons equal">=</div>
+      </button>
+      <button class="calc-button numbers one" data-type="number" data-value="1">
+        1
+      </button>
+      <button class="calc-button numbers two" data-type="number" data-value="2">
+        2
+      </button>
+      <button
+        class="calc-button numbers three"
+        data-type="number"
+        data-value="3"
+      >
+        3
+      </button>
+      <button
+        class="calc-button orange-buttons add-sign"
+        data-type="operator"
+        data-value="+"
+      >
+        +
+      </button>
+      <button id="color-theme" class="color-theme">&#9788;</button>
+      <button class="calc-button orange-buttons ac" data-type="clear">
+        AC
+      </button>
+      <button class="calc-button orange-buttons back">&#8617;</button>
+      <button
+        class="calc-button numbers double-zero"
+        data-type="number"
+        data-value="00"
+      >
+        00
+      </button>
+      <button
+        class="calc-button numbers zero"
+        data-type="number"
+        data-value="0"
+      >
+        0
+      </button>
+      <button class="calc-button numbers dot" data-type="number" data-value=".">
+        .
+      </button>
+      <button class="calc-button orange-buttons equal" data-type="equal">
+        =
+      </button>
     </div>
     <script type="module" src="index.js"></script>
   </body>
