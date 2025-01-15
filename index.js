@@ -9,6 +9,7 @@ import {
   SquareRootCommand,
   CubeRootCommand,
   AbsoluteValueCommand,
+  OneDividedByXCommand,
 } from "./commands.js";
 
 let currentOperand = "";
@@ -58,6 +59,7 @@ function handleSolo(value) {
     "square-root-from-x": new SquareRootCommand(),
     "cube-root-from-x": new CubeRootCommand(),
     "absolute-value": new AbsoluteValueCommand(),
+    "one-divided-by-x": new OneDividedByXCommand(),
   };
 
   const soloCommand = soloCommandMap[value];

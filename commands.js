@@ -40,7 +40,7 @@ class MultiplyCommand extends Command {
 class DivideCommand extends Command {
   execute(prev, curr) {
     if (curr === 0) {
-      return "undefined";
+      return "n/a: division by zero";
     }
     return prev / curr;
   }
@@ -106,7 +106,20 @@ class AbsoluteValueCommand extends Command {
   }
 
   undo(result, curr) {
-    throw new Error("Undo not supported for absolute value.");
+    return "not available for absolute value";
+  }
+}
+
+class OneDividedByXCommand extends Command {
+  execute(prev, curr) {
+    if (prev === 0) {
+      return "n/a: division by zero";
+    }
+    return 1 / prev;
+  }
+
+  undo(result, curr) {
+    return "n/a: cannot undo 1/x";
   }
 }
 
@@ -121,4 +134,5 @@ export {
   SquareRootCommand,
   CubeRootCommand,
   AbsoluteValueCommand,
+  OneDividedByXCommand,
 };
