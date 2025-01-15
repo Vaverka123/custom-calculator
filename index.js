@@ -33,8 +33,17 @@ function appendNumber(number) {
     clearInput();
     resultLocked = false;
   }
-  if (currentOperand === "" && number === "0" && number === "00") return;
-  if (number === "." && currentOperand.includes(".")) return;
+  if (currentOperand === "" && number === "0") return;
+  if (currentOperand === "" && number === "00") return;
+  if (number === ".") {
+    if (currentOperand === "") {
+      currentOperand = "0.";
+      updateInput();
+      return;
+    }
+
+    if (currentOperand.includes(".")) return;
+  }
   currentOperand = currentOperand.toString() + number.toString();
   updateInput();
 }

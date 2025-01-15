@@ -63,6 +63,10 @@ button {
   cursor: pointer;
 }
 
+sup {
+  font-size: 15px;
+}
+
 .special-buttons {
   background-color: var(--special-buttons-bg);
 }
