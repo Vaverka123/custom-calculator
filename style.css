@@ -16,6 +16,22 @@
   --buttons-color: #2e1e0f;
 }
 
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.blink {
+  animation: blink 0.2s ease-in-out;
+}
+
 body {
   background-color: #cfee9e;
 }
@@ -39,7 +55,7 @@ button {
   grid-template-rows: repeat(6, 1fr);
   grid-template-areas:
     "input input input input input input input"
-    "mc mr m-plus m-minus sign-change percent division"
+    "mc mr m-plus m-minus sign-change get-percent division"
     "x-squared x-cubed x-to-the-power-of-y seven eight nine multiply"
     "abs one-divided-by-x ten-powered-by-x four five six substract"
     "square-root-from-x cube-root-from-x y-root-from-x one two three add-sign"
@@ -117,7 +133,7 @@ sup {
 }
 
 .percent {
-  grid-area: percent;
+  grid-area: get-percent;
 }
 
 .division {

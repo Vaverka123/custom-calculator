@@ -106,7 +106,7 @@ class AbsoluteValueCommand extends Command {
   }
 
   undo(result, curr) {
-    return "not available for absolute value";
+    return "n/a for absolute value";
   }
 }
 
@@ -123,6 +123,16 @@ class OneDividedByXCommand extends Command {
   }
 }
 
+class XPowByYCommand extends Command {
+  execute(prev, curr) {
+    return prev ** curr;
+  }
+
+  undo(result, curr) {
+    return result ** (1 / curr);
+  }
+}
+
 export {
   AddCommand,
   SubtractCommand,
@@ -135,4 +145,5 @@ export {
   CubeRootCommand,
   AbsoluteValueCommand,
   OneDividedByXCommand,
+  XPowByYCommand,
 };

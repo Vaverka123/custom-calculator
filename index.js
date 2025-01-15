@@ -10,6 +10,7 @@ import {
   CubeRootCommand,
   AbsoluteValueCommand,
   OneDividedByXCommand,
+  XPowByYCommand,
 } from "./commands.js";
 
 let currentOperand = "";
@@ -45,6 +46,14 @@ function handleButtonClick(event) {
   } else if (type === "solo") {
     handleSolo(value);
   }
+
+  if (type !== "number") {
+    input.classList.add("blink");
+
+    setTimeout(() => {
+      input.classList.remove("blink");
+    }, 200);
+  }
 }
 
 function handleSolo(value) {
@@ -55,7 +64,7 @@ function handleSolo(value) {
   const soloCommandMap = {
     "x-squared": new XSquaredCommand(),
     "x-cubed": new XCubedCommand(),
-    percent: new PercentCommand(),
+    "get-percent": new PercentCommand(),
     "square-root-from-x": new SquareRootCommand(),
     "cube-root-from-x": new CubeRootCommand(),
     "absolute-value": new AbsoluteValueCommand(),
@@ -84,20 +93,43 @@ function appendNumber(number) {
     clearInput();
     resultLocked = false;
   }
-  if (currentOperand === "" && number === "0") return;
-  if (currentOperand === "" && number === "00") return;
-  if (number === ".") {
-    if (currentOperand === "") {
-      currentOperand = "0.";
-      updateInput();
-      return;
-    }
 
-    if (currentOperand.includes(".")) return;
+  if (currentOperand === "" && number === "00") return;
+  if (currentOperand === "" && number === "0") {
+    currentOperand = "0";
+    updateInput();
+    return;
   }
-  if (currentOperand.length > 20) return;
-  currentOperand = currentOperand.toString() + number.toString();
-  updateInput();
+
+  if (currentOperand === "0" && number === "00") return;
+  if (currentOperand === "0" && number === "0") return;
+  if (currentOperand === "0" && number === ".") {
+    currentOperand = "0.";
+    updateInput();
+    return;
+  }
+
+  if (
+    (currentOperand === "0" && number !== "0") ||
+    (currentOperand === "0" && number !== "00")
+  ) {
+    currentOperand = number.toString();
+    updateInput();
+    return;
+  }
+
+  if (currentOperand === "" && number === ".") {
+    currentOperand = "0.";
+    updateInput();
+    return;
+  }
+
+  if (currentOperand.includes(".") && number === ".") return;
+
+  if (currentOperand.length < 20) {
+    currentOperand = currentOperand + number.toString();
+    updateInput();
+  }
 }
 
 function toggleSign() {
@@ -130,6 +162,7 @@ function calculateResult() {
     "-": new SubtractCommand(),
     "*": new MultiplyCommand(),
     "/": new DivideCommand(),
+    "x-to-the-power-of-y": new XPowByYCommand(),
   };
 
   const operationCommand = operationsMap[operation];
