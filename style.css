@@ -41,7 +41,7 @@ button {
     "input input input input input input input"
     "mc mr m-plus m-minus sign-change percent division"
     "x-squared x-cubed x-to-the-power-of-y seven eight nine multiply"
-    "functional one-divided-by-x ten-powered-by-x four five six substract"
+    "abs one-divided-by-x ten-powered-by-x four five six substract"
     "square-root-from-x cube-root-from-x y-root-from-x one two three add-sign"
     "color-theme ac undo double-zero zero dot equal";
 
@@ -152,8 +152,8 @@ sup {
   grid-area: multiply;
 }
 
-.functional {
-  grid-area: functional;
+.abs {
+  grid-area: abs;
 }
 
 .one-divided-by-x {

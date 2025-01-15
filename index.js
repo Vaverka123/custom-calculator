@@ -3,6 +3,12 @@ import {
   SubtractCommand,
   MultiplyCommand,
   DivideCommand,
+  XSquaredCommand,
+  XCubedCommand,
+  PercentCommand,
+  SquareRootCommand,
+  CubeRootCommand,
+  AbsoluteValueCommand,
 } from "./commands.js";
 
 let currentOperand = "";
@@ -35,7 +41,40 @@ function handleButtonClick(event) {
     calculateResult();
   } else if (type === "undo") {
     undo();
+  } else if (type === "solo") {
+    handleSolo(value);
   }
+}
+
+function handleSolo(value) {
+  if (currentOperand === "") return;
+
+  const prev = parseFloat(currentOperand);
+
+  const soloCommandMap = {
+    "x-squared": new XSquaredCommand(),
+    "x-cubed": new XCubedCommand(),
+    percent: new PercentCommand(),
+    "square-root-from-x": new SquareRootCommand(),
+    "cube-root-from-x": new CubeRootCommand(),
+    "absolute-value": new AbsoluteValueCommand(),
+  };
+
+  const soloCommand = soloCommandMap[value];
+
+  const result = soloCommand.execute(prev);
+
+  undoStack.push({
+    command: soloCommand,
+    result,
+    prevOperand: previousOperand,
+    currOperand: null,
+    operation,
+  });
+
+  currentOperand = result.toString();
+  updateInput();
+  resultLocked = true;
 }
 
 function appendNumber(number) {
@@ -63,13 +102,6 @@ function toggleSign() {
   if (currentOperand === "") return;
   currentOperand = (parseFloat(currentOperand) * -1).toString();
   updateInput();
-}
-
-function caculatePercent() {
-  if (currentOperand === "") return;
-  currentOperand = (parseFloat(currentOperand) * 0.01).toString();
-  updateInput();
-  resultLocked = true;
 }
 
 function chooseOperation(op) {

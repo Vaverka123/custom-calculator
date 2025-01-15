@@ -50,4 +50,75 @@ class DivideCommand extends Command {
   }
 }
 
-export { AddCommand, SubtractCommand, MultiplyCommand, DivideCommand };
+class XSquaredCommand extends Command {
+  execute(prev, curr) {
+    return prev * prev;
+  }
+
+  undo(result, curr) {
+    return result ** 0.5;
+  }
+}
+
+class XCubedCommand extends Command {
+  execute(prev, curr) {
+    return prev * prev * prev;
+  }
+
+  undo(result, curr) {
+    return result ** (1 / 3);
+  }
+}
+
+class PercentCommand extends Command {
+  execute(prev, curr) {
+    return prev * 0.01;
+  }
+
+  undo(result, curr) {
+    return result * 100;
+  }
+}
+
+class SquareRootCommand extends Command {
+  execute(prev, curr) {
+    return prev ** 0.5;
+  }
+
+  undo(result, curr) {
+    return result * result;
+  }
+}
+
+class CubeRootCommand extends Command {
+  execute(prev, curr) {
+    return prev ** 0.33;
+  }
+
+  undo(result, curr) {
+    return result * result * result;
+  }
+}
+
+class AbsoluteValueCommand extends Command {
+  execute(prev, curr) {
+    return prev < 0 ? -prev : prev;
+  }
+
+  undo(result, curr) {
+    throw new Error("Undo not supported for absolute value.");
+  }
+}
+
+export {
+  AddCommand,
+  SubtractCommand,
+  MultiplyCommand,
+  DivideCommand,
+  XSquaredCommand,
+  XCubedCommand,
+  PercentCommand,
+  SquareRootCommand,
+  CubeRootCommand,
+  AbsoluteValueCommand,
+};

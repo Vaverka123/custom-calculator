@@ -24,7 +24,11 @@
       >
         +/-
       </button>
-      <button class="calc-button special-buttons percent" data-type="percent">
+      <button
+        class="calc-button special-buttons percent"
+        data-type="solo"
+        data-value="percent"
+      >
         %
       </button>
       <button
@@ -35,11 +39,19 @@
         /
       </button>
 
-      <button id="x-squared" class="calc-button special-buttons x-squared">
+      <button
+        class="calc-button special-buttons x-squared"
+        data-type="solo"
+        data-value="x-squared"
+      >
         x&sup2;
       </button>
-      <button id="x-cubed" class="calc-button special-buttons x-cubed">
-        x&sup2;
+      <button
+        class="calc-button special-buttons x-cubed"
+        data-type="solo"
+        data-value="x-cubed"
+      >
+        x&sup3;
       </button>
       <button
         id="x-to-the-power-of-y"
@@ -77,12 +89,16 @@
         *
       </button>
 
-      <button id="functional" class="calc-button special-buttons functional">
+      <button
+        class="calc-button special-buttons abs"
+        data-type="solo"
+        data-value="absolute-value"
+      >
         x!
       </button>
       <button
-        id="1-divided-by-x"
         class="calc-button special-buttons one-divided-by-x"
+        id="one-divided-by-x"
       >
         1/x
       </button>
@@ -119,14 +135,16 @@
       </button>
 
       <button
-        id="square-root-from-x"
         class="calc-button special-buttons square-root-from-x"
+        data-type="solo"
+        data-value="square-root-from-x"
       >
         &Sqrt;x
       </button>
       <button
-        id="cube-root-from-x"
         class="calc-button special-buttons cube-root-from-x"
+        data-type="solo"
+        data-value="cube-root-from-x"
       >
         <sup>3</sup>
         &Sqrt;x
