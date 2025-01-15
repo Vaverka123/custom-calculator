@@ -133,6 +133,16 @@ class XPowByYCommand extends Command {
   }
 }
 
+class YRootFromXCommand extends Command {
+  execute(prev, curr) {
+    return prev ** (1 / curr);
+  }
+
+  undo(result, curr) {
+    return result ** curr;
+  }
+}
+
 export {
   AddCommand,
   SubtractCommand,
@@ -146,4 +156,5 @@ export {
   AbsoluteValueCommand,
   OneDividedByXCommand,
   XPowByYCommand,
+  YRootFromXCommand,
 };

@@ -11,6 +11,7 @@ import {
   AbsoluteValueCommand,
   OneDividedByXCommand,
   XPowByYCommand,
+  YRootFromXCommand,
 } from "./commands.js";
 
 let currentOperand = "";
@@ -18,6 +19,7 @@ let previousOperand = "";
 let operation = undefined;
 let resultLocked = false;
 let undoStack = [];
+let memory = 0;
 
 const calc = document.querySelector(".calculator");
 
@@ -45,6 +47,14 @@ function handleButtonClick(event) {
     undo();
   } else if (type === "solo") {
     handleSolo(value);
+  } else if (type === "memory-add") {
+    memoryAdd();
+  } else if (type === "memory-subtract") {
+    memorySubtract();
+  } else if (type === "memory-recall") {
+    memoryRecall();
+  } else if (type === "memory-clear") {
+    memoryClear();
   }
 
   if (type !== "number") {
@@ -163,6 +173,7 @@ function calculateResult() {
     "*": new MultiplyCommand(),
     "/": new DivideCommand(),
     "x-to-the-power-of-y": new XPowByYCommand(),
+    "y-root-from-x": new YRootFromXCommand(),
   };
 
   const operationCommand = operationsMap[operation];
@@ -191,6 +202,33 @@ function calculateResult() {
   previousOperand = "";
   updateInput();
   resultLocked = true;
+}
+
+function memoryAdd() {
+  if (currentOperand !== "") {
+    memory += parseFloat(currentOperand);
+    currentOperand = "0";
+    updateInput();
+  }
+}
+
+function memorySubtract() {
+  if (currentOperand !== "") {
+    memory -= parseFloat(currentOperand);
+    currentOperand = "0";
+    updateInput();
+  }
+}
+
+function memoryRecall() {
+  currentOperand = memory.toString();
+  updateInput();
+}
+
+function memoryClear() {
+  memory = 0;
+  currentOperand = "0";
+  updateInput();
 }
 
 function undo() {

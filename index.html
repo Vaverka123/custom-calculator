@@ -12,10 +12,19 @@
         <input type="text" name="input" id="input" placeholder="0" disabled />
       </div>
 
-      <button id="mc" class="calc-button special-buttons mc">MC</button>
-      <button id="mr" class="calc-button special-buttons mr">MR</button>
-      <button id="m-plus" class="calc-button special-buttons m-plus">M+</button>
-      <button id="m-minus" class="calc-button special-buttons m-minus">
+      <button class="calc-button special-buttons mc" data-type="memory-clear">
+        MC
+      </button>
+      <button class="calc-button special-buttons mr" data-type="memory-recall">
+        MR
+      </button>
+      <button class="calc-button special-buttons m-plus" data-type="memory-add">
+        M+
+      </button>
+      <button
+        class="calc-button special-buttons m-minus"
+        data-type="memory-subtract"
+      >
         M-
       </button>
       <button
@@ -153,8 +162,9 @@
         &Sqrt;x
       </button>
       <button
-        id="y-root-from-x"
         class="calc-button special-buttons y-root-from-x"
+        data-type="operator"
+        data-value="y-root-from-x"
       >
         <sup>y</sup>
         &Sqrt;x
