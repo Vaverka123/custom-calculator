@@ -1,82 +1,53 @@
 class Command {
-  constructor(leftOperand, rightOperand) {
-    this.leftOperand = leftOperand;
-    this.rightOperand = rightOperand;
-    this.originalState = { leftOperand, rightOperand };
-  }
-
-  execute() {
+  execute(prev, curr) {
     throw new Error("execute() must be implemented");
   }
 
-  undo() {
-    this.leftOperand = this.originalState.leftOperand;
-    this.rightOperand = this.originalState.rightOperand;
-    return this.leftOperand;
+  undo(result, curr) {
+    throw new Error("undo() must be implemented");
   }
 }
-
 class AddCommand extends Command {
-  execute() {
-    return this.leftOperand + this.rightOperand;
+  execute(prev, curr) {
+    return prev + curr;
   }
 
-  undo() {
-    return this.leftOperand - this.rightOperand;
+  undo(result, curr) {
+    return result - curr;
   }
 }
 
 class SubtractCommand extends Command {
-  execute() {
-    return this.leftOperand - this.rightOperand;
+  execute(prev, curr) {
+    return prev - curr;
   }
 
-  undo() {
-    return this.leftOperand + this.rightOperand;
+  undo(result, curr) {
+    return result + curr;
   }
 }
 
 class MultiplyCommand extends Command {
-  execute() {
-    return this.leftOperand * this.rightOperand;
+  execute(prev, curr) {
+    return prev * curr;
   }
 
-  undo() {
-    return this.leftOperand / this.rightOperand;
+  undo(result, curr) {
+    return result / curr;
   }
 }
 
 class DivideCommand extends Command {
-  execute() {
-    if (this.rightOperand === 0) {
-      throw new Error("Division by zero is not allowed");
+  execute(prev, curr) {
+    if (curr === 0) {
+      return "undefined";
     }
-    return this.leftOperand / this.rightOperand;
+    return prev / curr;
   }
 
-  undo() {
-    if (this.rightOperand === 0) {
-      throw new Error("Cannot undo division by zero");
-    }
-    return this.leftOperand * this.rightOperand;
+  undo(result, curr) {
+    return result * curr;
   }
 }
 
-class PercentCommand extends Command {
-  execute() {
-    return this.leftOperand / 100;
-  }
-
-  undo() {
-    return this.leftOperand * 100;
-  }
-}
-
-export {
-  Command,
-  AddCommand,
-  SubtractCommand,
-  MultiplyCommand,
-  DivideCommand,
-  PercentCommand,
-};
+export { AddCommand, SubtractCommand, MultiplyCommand, DivideCommand };

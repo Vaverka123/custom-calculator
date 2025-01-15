@@ -1,5 +1,4 @@
-/* [data-theme="classic"] */
-:root {
+[data-theme="classic"] {
   --input-bg: #2e2f2f;
   --input-color: #ffffff;
   --special-buttons-bg: #889696;
@@ -8,14 +7,14 @@
   --buttons-color: #cddddd;
 }
 
-/* [data-theme="mild"] {
+[data-theme="mild"] {
   --input-bg: #bad7f2;
   --input-color: #545863;
   --special-buttons-bg: #baf2bb;
   --numbers-bg: #baf2d8;
   --orange-buttons-bg: #f2bac9;
   --buttons-color: #2e1e0f;
-} */
+}
 
 body {
   background-color: #cfee9e;
@@ -25,7 +24,6 @@ button {
   outline: none;
   padding: 0;
   border: none;
-  background-color: none;
 }
 
 .calculator {
@@ -45,7 +43,7 @@ button {
     "x-squared x-cubed x-to-the-power-of-y seven eight nine multiply"
     "functional one-divided-by-x ten-powered-by-x four five six substract"
     "square-root-from-x cube-root-from-x y-root-from-x one two three add-sign"
-    "color-theme ac back double-zero zero dot equal";
+    "color-theme ac undo double-zero zero dot equal";
 
   background-color: var(--input-bg);
 }
@@ -225,8 +223,8 @@ sup {
   grid-area: ac;
 }
 
-.back {
-  grid-area: back;
+.undo {
+  grid-area: undo;
 }
 
 .double-zero {

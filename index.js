@@ -1,7 +1,15 @@
+import {
+  AddCommand,
+  SubtractCommand,
+  MultiplyCommand,
+  DivideCommand,
+} from "./commands.js";
+
 let currentOperand = "";
 let previousOperand = "";
 let operation = undefined;
 let resultLocked = false;
+let undoStack = [];
 
 const calc = document.querySelector(".calculator");
 
@@ -25,6 +33,8 @@ function handleButtonClick(event) {
     clearInput();
   } else if (type === "equal") {
     calculateResult();
+  } else if (type === "undo") {
+    undo();
   }
 }
 
@@ -44,6 +54,7 @@ function appendNumber(number) {
 
     if (currentOperand.includes(".")) return;
   }
+  if (currentOperand.length > 20) return;
   currentOperand = currentOperand.toString() + number.toString();
   updateInput();
 }
@@ -71,14 +82,6 @@ function chooseOperation(op) {
   previousOperand = currentOperand;
   currentOperand = "";
   resultLocked = false;
-  console.log(
-    "op",
-    op,
-    "currentOperand",
-    currentOperand,
-    "previousOperand",
-    previousOperand
-  );
 }
 
 function calculateResult() {
@@ -88,33 +91,55 @@ function calculateResult() {
   const prev = parseFloat(previousOperand);
   const curr = parseFloat(currentOperand);
 
-  switch (operation) {
-    case "+":
-      result = prev + curr;
-      break;
-    case "-":
-      result = prev - curr;
-      break;
-    case "*":
-      result = prev * curr;
-      break;
-    case "/":
-      if (curr === 0) {
-        currentOperand = "undefined";
-        updateInput();
-        resultLocked = true;
-        return;
-      }
-      result = prev / curr;
-      break;
-    default:
-      return;
+  const operationsMap = {
+    "+": new AddCommand(),
+    "-": new SubtractCommand(),
+    "*": new MultiplyCommand(),
+    "/": new DivideCommand(),
+  };
+
+  const operationCommand = operationsMap[operation];
+
+  if (operationCommand) {
+    result = operationCommand.execute(prev, curr);
   }
+
+  if (result === "undefined") {
+    currentOperand = result;
+    updateInput();
+    resultLocked = true;
+    return;
+  }
+
+  undoStack.push({
+    command: operationCommand,
+    result,
+    prevOperand: previousOperand,
+    currOperand: currentOperand,
+    operation,
+  });
+
   currentOperand = result.toString();
   operation = undefined;
   previousOperand = "";
   updateInput();
   resultLocked = true;
+}
+
+function undo() {
+  if (undoStack.length === 0) return;
+
+  const lastCommand = undoStack.pop();
+
+  const { command, result, prevOperand, currOperand } = lastCommand;
+
+  const prev = command.undo(result, parseFloat(currOperand));
+
+  currentOperand = prev.toString();
+  previousOperand = prevOperand;
+  operation = lastCommand.operation;
+  updateInput();
+  resultLocked = false;
 }
 
 function clearInput() {
@@ -130,25 +155,19 @@ calc.addEventListener("click", (e) => {
 });
 
 const setTheme = (theme) => {
-  document.documentElement.className = theme;
+  document.documentElement.setAttribute("data-theme", theme);
+};
+
+const toggleTheme = () => {
+  const currentTheme = document.documentElement.getAttribute("data-theme");
+  const newTheme = currentTheme === "classic" ? "mild" : "classic";
+  setTheme(newTheme);
 };
 
 document.addEventListener("DOMContentLoaded", () => {
-  const themeButtons = document.querySelectorAll(
-    'button[data-type="color-theme"]'
-  );
+  const savedTheme = localStorage.getItem("theme") || "classic";
+  setTheme(savedTheme);
 
-  themeButtons.forEach((button) => {
-    button.addEventListener("click", () => {
-      if (button.querySelector("img").alt.includes("bright")) {
-        setTheme("bright");
-        button.style.display = "none";
-        button.nextElementSibling.style.display = "block";
-      } else if (button.querySelector("img").alt.includes("dark")) {
-        setTheme("dark");
-        button.style.display = "none";
-        button.previousElementSibling.style.display = "block";
-      }
-    });
-  });
+  const themeButton = document.querySelector('button[data-type="color-theme"]');
+  themeButton.addEventListener("click", toggleTheme);
 });
