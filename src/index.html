@@ -7,9 +7,16 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div class="calculator">
+    <div class="calculator" data-testid="calc" data-theme="">
       <div class="input-container">
-        <input type="text" name="input" id="input" placeholder="0" disabled />
+        <input
+          type="text"
+          name="input"
+          id="input"
+          placeholder="0"
+          disabled
+          data-testid="input"
+        />
       </div>
 
       <button class="calc-button special-buttons mc" data-type="memory-clear">
@@ -192,6 +199,7 @@
       <button
         class="calc-button orange-buttons color-theme"
         data-type="color-theme"
+        data-testid="themeBtn"
       >
         🌈
       </button>

@@ -261,11 +261,11 @@ calc.addEventListener("click", (e) => {
 });
 
 const setTheme = (theme) => {
-  document.documentElement.setAttribute("data-theme", theme);
+  calc.setAttribute("data-theme", theme);
 };
 
 const toggleTheme = () => {
-  const currentTheme = document.documentElement.getAttribute("data-theme");
+  const currentTheme = calc.getAttribute("data-theme");
   const newTheme = currentTheme === "classic" ? "mild" : "classic";
   setTheme(newTheme);
 };
