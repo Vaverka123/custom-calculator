@@ -13,6 +13,7 @@ import {
   XPowByYCommand,
   YRootFromXCommand,
 } from "./commands.js";
+import "./style.css";
 
 let currentOperand = "";
 let previousOperand = "";
