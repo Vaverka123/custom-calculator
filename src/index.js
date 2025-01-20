@@ -8,7 +8,7 @@ import {
   PercentCommand,
   SquareRootCommand,
   CubeRootCommand,
-  AbsoluteValueCommand,
+  FactorialCommand,
   OneDividedByXCommand,
   XPowByYCommand,
   YRootFromXCommand,
@@ -78,7 +78,7 @@ function handleSolo(value) {
     "get-percent": new PercentCommand(),
     "square-root-from-x": new SquareRootCommand(),
     "cube-root-from-x": new CubeRootCommand(),
-    "absolute-value": new AbsoluteValueCommand(),
+    "factorial-btn": new FactorialCommand(),
     "one-divided-by-x": new OneDividedByXCommand(),
   };
 

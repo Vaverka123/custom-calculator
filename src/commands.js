@@ -100,13 +100,20 @@ class CubeRootCommand extends Command {
   }
 }
 
-class AbsoluteValueCommand extends Command {
+class FactorialCommand extends Command {
   execute(prev, curr) {
-    return prev < 0 ? -prev : prev;
+    if (prev < 0) return "n/a: factorial of negative number";
+    if (prev === 0 || prev === 1) return 1;
+
+    let result = 1;
+    for (let i = 2; i <= prev; i++) {
+      result *= i;
+    }
+    return result;
   }
 
   undo(result, curr) {
-    return "n/a for absolute value";
+    return "n/a: cannot undo factorial";
   }
 }
 
@@ -153,7 +160,7 @@ export {
   PercentCommand,
   SquareRootCommand,
   CubeRootCommand,
-  AbsoluteValueCommand,
+  FactorialCommand,
   OneDividedByXCommand,
   XPowByYCommand,
   YRootFromXCommand,
