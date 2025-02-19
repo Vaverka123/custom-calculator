@@ -12,7 +12,7 @@
   - **commands.js**: Implements reusable functions following the Command design pattern, encapsulating actions or operations as objects to promote flexibility and decoupling.
   - **index.html**: HTML file for development mode.
   - **index.js**: The main JavaScript entry point for initializing and managing the app.
-  - **style/**: Directory for CSS stylesheets.
+  - **style.css**: Directory for CSS stylesheets.
   - **test.spec.js**: Test file for unit or integration testing using Jest.
 - **.gitignore**: Specifies files and directories (e.g., `node_modules`, `dist`) to be excluded from version control.
 - **jest.config.js**: Configuration for Jest, defining test environments, file patterns, and other settings.

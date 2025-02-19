@@ -12,6 +12,7 @@ import {
   OneDividedByXCommand,
   XPowByYCommand,
   YRootFromXCommand,
+  TenPowByXCommand,
 } from "./commands";
 
 describe("Command Design Pattern - Math Commands", () => {
@@ -73,20 +74,20 @@ describe("Command Design Pattern - Math Commands", () => {
   describe("FactorialCommand - execute and undo", () => {
     test("FactorialCommand - valid factorial calculations", () => {
       const factorial = new FactorialCommand();
-      expect(factorial.execute(0)).toBe(1); // 0! = 1
-      expect(factorial.execute(1)).toBe(1); // 1! = 1
-      expect(factorial.execute(5)).toBe(120); // 5! = 120
-      expect(factorial.execute(10)).toBe(3628800); // 10! = 3628800
+      expect(factorial.execute(0)).toBe(1);
+      expect(factorial.execute(1)).toBe(1);
+      expect(factorial.execute(5)).toBe(120);
+      expect(factorial.execute(10)).toBe(3628800);
     });
 
     test("FactorialCommand - invalid factorial inputs", () => {
       const factorial = new FactorialCommand();
-      expect(factorial.execute(-1)).toBe("n/a: factorial of negative number"); // Negative input
+      expect(factorial.execute(-1)).toBe("n/a: factorial of negative number");
     });
 
     test("FactorialCommand - undo", () => {
       const factorial = new FactorialCommand();
-      expect(factorial.undo(120, null)).toBe("n/a: cannot undo factorial");
+      expect(factorial.undo(120, 5)).toBe(5);
     });
   });
 
@@ -94,7 +95,14 @@ describe("Command Design Pattern - Math Commands", () => {
     const oneOverX = new OneDividedByXCommand();
     expect(oneOverX.execute(4)).toBe(0.25);
     expect(oneOverX.execute(0)).toBe("n/a: division by zero");
-    expect(oneOverX.undo(0.25)).toBe("n/a: cannot undo 1/x");
+    expect(oneOverX.undo(0.25)).toBe(4);
+  });
+
+  test("TenPoweredByXCommand - execute and undo", () => {
+    const tenPowByX = new TenPowByXCommand();
+    expect(tenPowByX.execute(2)).toBe(100);
+    expect(tenPowByX.execute(4)).toBe(10000);
+    expect(tenPowByX.undo(100)).toBe(2);
   });
 
   test("XPowByYCommand - execute and undo", () => {

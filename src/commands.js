@@ -40,12 +40,16 @@ class MultiplyCommand extends Command {
 class DivideCommand extends Command {
   execute(prev, curr) {
     if (curr === 0) {
+      this.originalPrev = prev;
       return "n/a: division by zero";
     }
     return prev / curr;
   }
 
   undo(result, curr) {
+    if (result === "n/a: division by zero") {
+      return this.originalPrev;
+    }
     return result * curr;
   }
 }
@@ -92,7 +96,7 @@ class SquareRootCommand extends Command {
 
 class CubeRootCommand extends Command {
   execute(prev, curr) {
-    return prev ** 0.33;
+    return prev ** (1 / 3);
   }
 
   undo(result, curr) {
@@ -101,19 +105,20 @@ class CubeRootCommand extends Command {
 }
 
 class FactorialCommand extends Command {
-  execute(prev, curr) {
-    if (prev < 0) return "n/a: factorial of negative number";
-    if (prev === 0 || prev === 1) return 1;
+  execute(curr) {
+    curr;
+    if (curr < 0) return "n/a: factorial of negative number";
+    if (curr === 0 || curr === 1) return 1;
 
     let result = 1;
-    for (let i = 2; i <= prev; i++) {
+    for (let i = 2; i <= curr; i++) {
       result *= i;
     }
     return result;
   }
 
   undo(result, curr) {
-    return "n/a: cannot undo factorial";
+    return curr;
   }
 }
 
@@ -126,7 +131,25 @@ class OneDividedByXCommand extends Command {
   }
 
   undo(result, curr) {
-    return "n/a: cannot undo 1/x";
+    return 1 / result;
+  }
+}
+
+class TenPowByXCommand extends Command {
+  execute(curr) {
+    if (curr === 0) {
+      return 1;
+    }
+    if (curr === 1) {
+      curr;
+      return 10;
+    }
+
+    return Math.pow(10, curr);
+  }
+
+  undo(result) {
+    return Math.log10(result);
   }
 }
 
@@ -164,4 +187,5 @@ export {
   OneDividedByXCommand,
   XPowByYCommand,
   YRootFromXCommand,
+  TenPowByXCommand,
 };

@@ -12,6 +12,7 @@ import {
   OneDividedByXCommand,
   XPowByYCommand,
   YRootFromXCommand,
+  TenPowByXCommand,
 } from "./commands.js";
 import "./style.css";
 
@@ -36,8 +37,6 @@ function handleButtonClick(event) {
     appendNumber(value);
   } else if (type === "sign-change") {
     toggleSign();
-  } else if (type === "percent") {
-    caculatePercent();
   } else if (type === "operator") {
     chooseOperation(value);
   } else if (type === "clear") {
@@ -71,6 +70,7 @@ function handleSolo(value) {
   if (currentOperand === "") return;
 
   const prev = parseFloat(currentOperand);
+  const curr = parseFloat(currentOperand);
 
   const soloCommandMap = {
     "x-squared": new XSquaredCommand(),
@@ -80,21 +80,24 @@ function handleSolo(value) {
     "cube-root-from-x": new CubeRootCommand(),
     "factorial-btn": new FactorialCommand(),
     "one-divided-by-x": new OneDividedByXCommand(),
+    "ten-powered-by-x": new TenPowByXCommand(),
   };
 
   const soloCommand = soloCommandMap[value];
 
-  const result = soloCommand.execute(prev);
+  const result = soloCommand.execute(prev, curr);
 
   undoStack.push({
     command: soloCommand,
     result,
-    prevOperand: previousOperand,
-    currOperand: null,
+    prevOperand: currentOperand,
+    currOperand: currentOperand,
     operation,
   });
 
   currentOperand = result.toString();
+  operation = undefined;
+  previousOperand = "";
   updateInput();
   resultLocked = true;
 }
