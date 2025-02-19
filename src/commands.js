@@ -60,7 +60,7 @@ class XSquaredCommand extends Command {
   }
 
   undo(result, curr) {
-    return result ** 0.5;
+    return Math.round(result ** 0.5);
   }
 }
 
@@ -70,7 +70,7 @@ class XCubedCommand extends Command {
   }
 
   undo(result, curr) {
-    return result ** (1 / 3);
+    return Math.round(result ** (1 / 3));
   }
 }
 
@@ -100,7 +100,7 @@ class CubeRootCommand extends Command {
   }
 
   undo(result, curr) {
-    return result * result * result;
+    return Math.round(result * result * result);
   }
 }
 
