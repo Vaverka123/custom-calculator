@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Custom Calculator</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="calculator" data-testid="calc" data-theme="">
+      <div class="input-container">
+        <input
+          type="text"
+          name="input"
+          id="input"
+          placeholder="0"
+          disabled
+          data-testid="input"
+        />
+      </div>
+
+      <button class="calc-button special-buttons mc" data-type="memory-clear">
+        MC
+      </button>
+      <button class="calc-button special-buttons mr" data-type="memory-recall">
+        MR
+      </button>
+      <button class="calc-button special-buttons m-plus" data-type="memory-add">
+        M+
+      </button>
+      <button
+        class="calc-button special-buttons m-minus"
+        data-type="memory-subtract"
+      >
+        M-
+      </button>
+      <button
+        class="calc-button special-buttons sign-change"
+        data-type="sign-change"
+      >
+        +/-
+      </button>
+      <button
+        class="calc-button special-buttons percent"
+        data-type="solo"
+        data-value="get-percent"
+      >
+        %
+      </button>
+      <button
+        class="calc-button orange-buttons division"
+        data-type="operator"
+        data-value="/"
+      >
+        /
+      </button>
+
+      <button
+        class="calc-button special-buttons x-squared"
+        data-type="solo"
+        data-value="x-squared"
+      >
+        x&sup2;
+      </button>
+      <button
+        class="calc-button special-buttons x-cubed"
+        data-type="solo"
+        data-value="x-cubed"
+      >
+        x&sup3;
+      </button>
+      <button
+        class="calc-button special-buttons x-to-the-power-of-y"
+        data-type="operator"
+        data-value="x-to-the-power-of-y"
+      >
+        x
+        <sup>y</sup>
+      </button>
+      <button
+        class="calc-button numbers seven"
+        data-type="number"
+        data-value="7"
+      >
+        7
+      </button>
+      <button
+        class="calc-button numbers eight"
+        data-type="number"
+        data-value="8"
+      >
+        8
+      </button>
+      <button
+        class="calc-button numbers nine"
+        data-type="number"
+        data-value="9"
+      >
+        9
+      </button>
+      <button
+        class="calc-button orange-buttons multiply"
+        data-type="operator"
+        data-value="*"
+      >
+        *
+      </button>
+
+      <button
+        class="calc-button special-buttons factorial-btn"
+        data-type="solo"
+        data-value="factorial-btn"
+      >
+        x!
+      </button>
+      <button
+        class="calc-button special-buttons one-divided-by-x"
+        data-type="solo"
+        data-value="one-divided-by-x"
+      >
+        1/x
+      </button>
+      <button
+        class="calc-button special-buttons ten-powered-by-x"
+        data-type="solo"
+        data-value="ten-powered-by-x"
+      >
+        10
+        <sup>x</sup>
+      </button>
+      <button
+        class="calc-button numbers four"
+        data-type="number"
+        data-value="4"
+      >
+        4
+      </button>
+      <button
+        class="calc-button numbers five"
+        data-type="number"
+        data-value="5"
+      >
+        5
+      </button>
+      <button class="calc-button numbers six" data-type="number" data-value="6">
+        6
+      </button>
+      <button
+        class="calc-button orange-buttons substract"
+        data-type="operator"
+        data-value="-"
+      >
+        -
+      </button>
+
+      <button
+        class="calc-button special-buttons square-root-from-x"
+        data-type="solo"
+        data-value="square-root-from-x"
+      >
+        &Sqrt;x
+      </button>
+      <button
+        class="calc-button special-buttons cube-root-from-x"
+        data-type="solo"
+        data-value="cube-root-from-x"
+      >
+        <sup>3</sup>
+        &Sqrt;x
+      </button>
+      <button
+        class="calc-button special-buttons y-root-from-x"
+        data-type="operator"
+        data-value="y-root-from-x"
+      >
+        <sup>y</sup>
+        &Sqrt;x
+      </button>
+      <button class="calc-button numbers one" data-type="number" data-value="1">
+        1
+      </button>
+      <button class="calc-button numbers two" data-type="number" data-value="2">
+        2
+      </button>
+      <button
+        class="calc-button numbers three"
+        data-type="number"
+        data-value="3"
+      >
+        3
+      </button>
+      <button
+        class="calc-button orange-buttons add-sign"
+        data-type="operator"
+        data-value="+"
+      >
+        +
+      </button>
+      <button
+        class="calc-button orange-buttons color-theme"
+        data-type="color-theme"
+        data-testid="themeBtn"
+      >
+        🌈
+      </button>
+      <button class="calc-button orange-buttons ac" data-type="clear">
+        AC
+      </button>
+      <button class="calc-button orange-buttons undo" data-type="undo">
+        &#8617;
+      </button>
+      <button
+        class="calc-button numbers double-zero"
+        data-type="number"
+        data-value="00"
+      >
+        00
+      </button>
+      <button
+        class="calc-button numbers zero"
+        data-type="number"
+        data-value="0"
+      >
+        0
+      </button>
+      <button class="calc-button numbers dot" data-type="number" data-value=".">
+        .
+      </button>
+      <button class="calc-button orange-buttons equal" data-type="equal">
+        =
+      </button>
+    </div>
+    <script type="module" src="./index.js"></script>
+  </body>
+</html>

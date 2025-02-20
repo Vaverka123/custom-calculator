@@ -1,0 +1,260 @@
+[data-theme='classic'] {
+  --input-bg: #2e2f2f;
+  --input-color: #ffffff;
+  --special-buttons-bg: #889696;
+  --numbers-bg: #acbdba;
+  --orange-buttons-bg: #f18f01;
+  --buttons-color: #cddddd;
+}
+
+[data-theme='mild'] {
+  --input-bg: #bad7f2;
+  --input-color: #545863;
+  --special-buttons-bg: #baf2bb;
+  --numbers-bg: #baf2d8;
+  --orange-buttons-bg: #f2bac9;
+  --buttons-color: #2e1e0f;
+}
+
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.blink {
+  animation: blink 0.2s ease-in-out;
+}
+
+body {
+  background-color: #cfee9e;
+}
+
+button {
+  outline: none;
+  padding: 0;
+  border: none;
+}
+
+.calculator {
+  margin: 0 auto;
+  padding: 10px;
+  width: 100%;
+  max-width: 590px;
+  height: 385px;
+  border-radius: 10px;
+  display: grid;
+  gap: 5px;
+  grid-template-columns: repeat(7, 1fr);
+  grid-template-rows: repeat(6, 1fr);
+  grid-template-areas:
+    'input input input input input input input'
+    'mc mr m-plus m-minus sign-change get-percent division'
+    'x-squared x-cubed x-to-the-power-of-y seven eight nine multiply'
+    'factorial-btn one-divided-by-x ten-powered-by-x four five six substract'
+    'square-root-from-x cube-root-from-x y-root-from-x one two three add-sign'
+    'color-theme ac undo double-zero zero dot equal';
+
+  background-color: var(--input-bg);
+}
+
+.calc-button {
+  width: 80px;
+  height: 60px;
+  border-radius: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: sans-serif;
+  font-size: 25px;
+  color: var(--buttons-color);
+  cursor: pointer;
+}
+
+sup {
+  font-size: 15px;
+}
+
+.special-buttons {
+  background-color: var(--special-buttons-bg);
+}
+
+.orange-buttons {
+  background-color: var(--orange-buttons-bg);
+}
+
+.numbers {
+  background-color: var(--numbers-bg);
+}
+
+.input-container {
+  grid-area: input;
+  width: 100%;
+  height: 60px;
+  border-radius: 10px 10px 0 0;
+  background-color: var(--input-bg);
+}
+
+.input-container input {
+  padding: 10px 0;
+  width: 100%;
+  font-size: 40px;
+  border-radius: 7px;
+  border: none;
+  background-color: transparent;
+  text-align: end;
+  color: var(--input-color);
+}
+
+.mc {
+  grid-area: mc;
+}
+
+.mr {
+  grid-area: mr;
+}
+
+.m-plus {
+  grid-area: m-plus;
+}
+
+.m-minus {
+  grid-area: m-minus;
+}
+
+.sign-change {
+  grid-area: sign-change;
+}
+
+.percent {
+  grid-area: get-percent;
+}
+
+.division {
+  grid-area: division;
+}
+
+.x-squared {
+  grid-area: x-squared;
+}
+
+.x-cubed {
+  grid-area: x-cubed;
+}
+
+.x-to-the-power-of-y {
+  grid-area: x-to-the-power-of-y;
+}
+
+.seven {
+  grid-area: seven;
+}
+
+.eight {
+  grid-area: eight;
+}
+
+.nine {
+  grid-area: nine;
+}
+
+.multiply {
+  grid-area: multiply;
+}
+
+.factorial-btn {
+  grid-area: factorial-btn;
+}
+
+.one-divided-by-x {
+  grid-area: one-divided-by-x;
+}
+
+.ten-powered-by-x {
+  grid-area: ten-powered-by-x;
+}
+
+.four {
+  grid-area: four;
+}
+
+.five {
+  grid-area: five;
+}
+
+.six {
+  grid-area: six;
+}
+
+.substract {
+  grid-area: substract;
+}
+
+.square-root-from-x {
+  grid-area: square-root-from-x;
+}
+
+.cube-root-from-x {
+  grid-area: cube-root-from-x;
+}
+
+.y-root-from-x {
+  grid-area: y-root-from-x;
+}
+
+.one {
+  grid-area: one;
+}
+
+.two {
+  grid-area: two;
+}
+
+.three {
+  grid-area: three;
+}
+
+.add {
+  grid-area: add-sign;
+}
+
+.color-theme {
+  grid-area: color-theme;
+  height: 60px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--orange-buttons-bg);
+  color: var(--buttons-color);
+}
+
+.ac {
+  grid-area: ac;
+}
+
+.undo {
+  grid-area: undo;
+}
+
+.double-zero {
+  grid-area: double-zero;
+}
+
+.zero {
+  grid-area: zero;
+}
+
+.dot {
+  grid-area: dot;
+}
+
+.equal {
+  grid-area: equal;
+}
