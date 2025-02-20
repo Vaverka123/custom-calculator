@@ -1,4 +1,4 @@
-[data-theme="classic"] {
+[data-theme='classic'] {
   --input-bg: #2e2f2f;
   --input-color: #ffffff;
   --special-buttons-bg: #889696;
@@ -7,7 +7,7 @@
   --buttons-color: #cddddd;
 }
 
-[data-theme="mild"] {
+[data-theme='mild'] {
   --input-bg: #bad7f2;
   --input-color: #545863;
   --special-buttons-bg: #baf2bb;
@@ -54,12 +54,12 @@ button {
   grid-template-columns: repeat(7, 1fr);
   grid-template-rows: repeat(6, 1fr);
   grid-template-areas:
-    "input input input input input input input"
-    "mc mr m-plus m-minus sign-change get-percent division"
-    "x-squared x-cubed x-to-the-power-of-y seven eight nine multiply"
-    "factorial-btn one-divided-by-x ten-powered-by-x four five six substract"
-    "square-root-from-x cube-root-from-x y-root-from-x one two three add-sign"
-    "color-theme ac undo double-zero zero dot equal";
+    'input input input input input input input'
+    'mc mr m-plus m-minus sign-change get-percent division'
+    'x-squared x-cubed x-to-the-power-of-y seven eight nine multiply'
+    'factorial-btn one-divided-by-x ten-powered-by-x four five six substract'
+    'square-root-from-x cube-root-from-x y-root-from-x one two three add-sign'
+    'color-theme ac undo double-zero zero dot equal';
 
   background-color: var(--input-bg);
 }

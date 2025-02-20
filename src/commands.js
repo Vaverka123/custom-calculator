@@ -1,10 +1,10 @@
 class Command {
   execute(prev, curr) {
-    throw new Error("execute() must be implemented");
+    throw new Error('execute() must be implemented');
   }
 
   undo(result, curr) {
-    throw new Error("undo() must be implemented");
+    throw new Error('undo() must be implemented');
   }
 }
 class AddCommand extends Command {
@@ -41,13 +41,13 @@ class DivideCommand extends Command {
   execute(prev, curr) {
     if (curr === 0) {
       this.originalPrev = prev;
-      return "n/a: division by zero";
+      return 'n/a: division by zero';
     }
     return prev / curr;
   }
 
   undo(result, curr) {
-    if (result === "n/a: division by zero") {
+    if (result === 'n/a: division by zero') {
       return this.originalPrev;
     }
     return result * curr;
@@ -107,7 +107,7 @@ class CubeRootCommand extends Command {
 class FactorialCommand extends Command {
   execute(curr) {
     curr;
-    if (curr < 0) return "n/a: factorial of negative number";
+    if (curr < 0) return 'n/a: factorial of negative number';
     if (curr === 0 || curr === 1) return 1;
 
     let result = 1;
@@ -125,7 +125,7 @@ class FactorialCommand extends Command {
 class OneDividedByXCommand extends Command {
   execute(prev, curr) {
     if (prev === 0) {
-      return "n/a: division by zero";
+      return 'n/a: division by zero';
     }
     return 1 / prev;
   }
