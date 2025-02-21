@@ -1,21 +1,21 @@
 export class Calculator {
-    constructor(invoker) {
-        this.invoker = invoker
-        this.calculator = document.querySelector(".calculator");
+  constructor(invoker) {
+    this.invoker = invoker;
+    this.calculator = document.querySelector('.calculator');
 
-        this.calculator.addEventListener("click", (event) => {
-            if (!event.target.classList.contains("calc-button")) return;
+    this.calculator.addEventListener('click', (event) => {
+      if (!event.target.classList.contains('calc-button')) return;
 
-            const button = event.target;
-            console.log('button', button)
-        });
+      const button = event.target;
+      this.invoker.executeCommand(button.getAttribute('data-value'));
+    });
+  }
+
+  static updateDisplay(value) {
+    const display = document.querySelector('#input');
+
+    if (display) {
+      display.value = String(value).slice(0, 12);
     }
-
-    static updateDisplay(value) {
-        const display = document.querySelector('.display') ;
-
-        if (display) {
-            display.innerText = String(value).slice(0, 12);
-        }
-    }
+  }
 }
