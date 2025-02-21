@@ -1,3 +1,5 @@
+import './style.css';
+
 export class Calculator {
   constructor(invoker) {
     this.invoker = invoker;
@@ -16,6 +18,14 @@ export class Calculator {
 
     if (display) {
       display.value = String(value).slice(0, 12);
+
+      // if (type !== "number") {
+      //     display.classList.add("blink");
+      //
+      //     setTimeout(() => {
+      //       display.classList.remove("blink");
+      //     }, 200);
+      //   }
     }
   }
 }

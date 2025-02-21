@@ -1,46 +1,3 @@
-import "./style.css";
-
-// function updateInput() {
-//   const input = document.querySelector("#input");
-//   input.value = currentOperand || "0";
-// }
-//
-// function handleButtonClick(event) {
-//   const value = event.target.getAttribute("data-value");
-//   const type = event.target.getAttribute("data-type");
-//   if (type === "number") {
-//     appendNumber(value);
-//   } else if (type === "sign-change") {
-//     toggleSign();
-//   } else if (type === "operator") {
-//     chooseOperation(value);
-//   } else if (type === "clear") {
-//     clearInput();
-//   } else if (type === "equal") {
-//     calculateResult();
-//   } else if (type === "undo") {
-//     undo();
-//   } else if (type === "solo") {
-//     handleSolo(value);
-//   } else if (type === "memory-add") {
-//     memoryAdd();
-//   } else if (type === "memory-subtract") {
-//     memorySubtract();
-//   } else if (type === "memory-recall") {
-//     memoryRecall();
-//   } else if (type === "memory-clear") {
-//     memoryClear();
-//   }
-//
-//   if (type !== "number") {
-//     input.classList.add("blink");
-//
-//     setTimeout(() => {
-//       input.classList.remove("blink");
-//     }, 200);
-//   }
-// }
-//
 // function handleSolo(value) {
 //   if (currentOperand === "") return;
 //
@@ -77,49 +34,6 @@ import "./style.css";
 //   resultLocked = true;
 // }
 //
-// function appendNumber(number) {
-//   if (resultLocked) {
-//     clearInput();
-//     resultLocked = false;
-//   }
-//
-//   if (currentOperand === "" && number === "00") return;
-//   if (currentOperand === "" && number === "0") {
-//     currentOperand = "0";
-//     updateInput();
-//     return;
-//   }
-//
-//   if (currentOperand === "0" && number === "00") return;
-//   if (currentOperand === "0" && number === "0") return;
-//   if (currentOperand === "0" && number === ".") {
-//     currentOperand = "0.";
-//     updateInput();
-//     return;
-//   }
-//
-//   if (
-//     (currentOperand === "0" && number !== "0") ||
-//     (currentOperand === "0" && number !== "00")
-//   ) {
-//     currentOperand = number.toString();
-//     updateInput();
-//     return;
-//   }
-//
-//   if (currentOperand === "" && number === ".") {
-//     currentOperand = "0.";
-//     updateInput();
-//     return;
-//   }
-//
-//   if (currentOperand.includes(".") && number === ".") return;
-//
-//   if (currentOperand.length < 20) {
-//     currentOperand = currentOperand + number.toString();
-//     updateInput();
-//   }
-// }
 //
 // function toggleSign() {
 //   if (currentOperand === "") return;
@@ -233,13 +147,13 @@ import "./style.css";
 //   updateInput();
 // }
 
-import {CalculatorInvoker} from "./core/calculator-invoker.js";
-import {CalculatorClient} from "./calculator-client.js";
-import {Calculator} from "./calculator.js";
-import {ThemeToggle} from "./theme-toggle.js";
+import { CalculatorInvoker } from './core/calculator-invoker.js';
+import { CalculatorClient } from './calculator-client.js';
+import { Calculator } from './calculator.js';
+import { ThemeToggle } from './theme-toggle.js';
 
 const invoker = new CalculatorInvoker();
 const client = new CalculatorClient(invoker);
-client.setupCommands()
-new Calculator(invoker)
-new ThemeToggle()
+client.setupCommands();
+new Calculator(invoker);
+new ThemeToggle();
