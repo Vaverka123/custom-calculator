@@ -1,19 +1,18 @@
-import {
-  AddCommand,
-  SubtractCommand,
-  MultiplyCommand,
-  DivideCommand,
-  XSquaredCommand,
-  XCubedCommand,
-  PercentCommand,
-  SquareRootCommand,
-  CubeRootCommand,
-  FactorialCommand,
-  OneDividedByXCommand,
-  XPowByYCommand,
-  YRootFromXCommand,
-  TenPowByXCommand,
-} from './commands';
+import {AddCommand} from "./commands/add-command.js";
+import {SubtractCommand} from "./commands/substract-command.js";
+import {MultiplyCommand} from "./commands/multiply-command.js";
+import {DivideCommand} from "./commands/divide-command.js";
+import {XSquaredCommand} from "./commands/x-squared-command.js";
+import {XCubedCommand} from "./commands/x-cubed-command.js";
+import {PercentCommand} from "./commands/percent-command.js";
+import {SquareRootCommand} from "./commands/square-root-command.js";
+import {CubeRootCommand} from "./commands/cube-root-command.js";
+import {FactorialCommand} from "./commands/factorial-command.js";
+import {OneDividedByXCommand} from "./commands/one-diveded-by-x-command.js";
+import {TenPowByXCommand} from "./commands/ten-pow-by-x-command.js";
+import {XPowByYCommand} from "./commands/x-pow-by-y-command.js";
+import {YRootFromXCommand} from "./commands/x-root-from-y-command.js";
+
 
 describe('Command Design Pattern - Math Commands', () => {
   test('AddCommand - execute and undo', () => {
