@@ -42,7 +42,7 @@ export class CalculatorClient {
     this.invoker.setCommands('x-squared', new XSquaredCommand());
     this.invoker.setCommands('x-cubed', new XCubedCommand());
     this.invoker.setCommands('ten-powered-by-x', new TenPowByXCommand());
-    this.invoker.setCommands('square-root-from-xt', new SquareRootCommand());
+    this.invoker.setCommands('square-root-from-x', new SquareRootCommand());
     this.invoker.setCommands('one-divided-by-x', new OneDividedByXCommand());
     this.invoker.setCommands('ten-powered-by-x', new TenPowByXCommand());
     this.invoker.setCommands('xPowByY', new XPowByYCommand());

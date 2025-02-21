@@ -91,8 +91,8 @@ export class CalculatorReceiver {
   }
 
   static sqrt() {
-    this.value = String(getSqrt(Number(this.value)));
-    this.storedValue = Number(this.value);
+    this.currentOperand = this.currentOperand ** 0.5;
+    return this.currentOperand;
   }
 
   static cubeRoot() {

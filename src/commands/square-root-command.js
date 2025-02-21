@@ -1,11 +1,8 @@
-import {Command} from "./command.js";
+import { Command } from './command.js';
+import { CalculatorReceiver } from '../core/calculator-receiver.js';
 
 export class SquareRootCommand extends Command {
-    execute(prev, curr) {
-        return prev ** 0.5;
-    }
-
-    undo(result, curr) {
-        return result * result;
-    }
+  execute() {
+    CalculatorReceiver.sqrt();
+  }
 }
