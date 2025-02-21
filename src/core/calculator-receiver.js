@@ -1,4 +1,5 @@
 import { INITIAL_VALUE } from '../constants.js';
+import { getFactorial } from '../utils/get-factorial.js';
 
 export class CalculatorReceiver {
   static currentOperand = INITIAL_VALUE;
@@ -100,8 +101,9 @@ export class CalculatorReceiver {
   }
 
   static factorial() {
-    this.value = String(getFactorial(Number(this.value)));
-    this.storedValue = Number(this.value);
+    debugger;
+    this.currentOperand = String(getFactorial(Number(this.currentOperand)));
+    this.previousOperand = Number(this.currentOperand);
   }
 
   static percentage() {

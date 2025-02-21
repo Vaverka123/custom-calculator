@@ -1,5 +1,5 @@
 import { Calculator } from '../calculator.js';
-import { CalculatorReceiver } from './calculator-receiver.js';
+import { CalculatorReceiver } from '../core/calculator-receiver.js';
 
 export class CalculatorInvoker {
   commands = {};
@@ -10,6 +10,7 @@ export class CalculatorInvoker {
 
   executeCommand(label) {
     const command = this.commands[label];
+    // debugger;
     command.execute();
     Calculator.updateDisplay(CalculatorReceiver.getValue());
   }

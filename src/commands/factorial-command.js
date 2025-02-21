@@ -1,19 +1,12 @@
-import {Command} from "./command.js";
+import { Command } from './command.js';
+import { CalculatorReceiver } from '../core/calculator-receiver.js';
 
 export class FactorialCommand extends Command {
-    execute(curr) {
-        curr;
-        if (curr < 0) return 'n/a: factorial of negative number';
-        if (curr === 0 || curr === 1) return 1;
+  execute() {
+    CalculatorReceiver.factorial();
+  }
 
-        let result = 1;
-        for (let i = 2; i <= curr; i++) {
-            result *= i;
-        }
-        return result;
-    }
-
-    undo(result, curr) {
-        return curr;
-    }
+  undo(result, curr) {
+    return curr;
+  }
 }

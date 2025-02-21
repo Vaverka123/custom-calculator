@@ -11,6 +11,7 @@ import { AddCommand } from './commands/add-command.js';
 import { SubtractCommand } from './commands/substract-command.js';
 import { MultiplyCommand } from './commands/multiply-command.js';
 import { ClearInputCommand } from './commands/clear-input-command.js';
+import { FactorialCommand } from './commands/factorial-command.js';
 
 export class CalculatorClient {
   constructor(invoker) {
@@ -44,6 +45,7 @@ export class CalculatorClient {
     this.invoker.setCommands('ten-powered-by-x', new TenPowByXCommand());
     this.invoker.setCommands('xPowByY', new XPowByYCommand());
     this.invoker.setCommands('yRootFromX', new YRootFromXCommand());
+    this.invoker.setCommands('factorial', new FactorialCommand());
   }
 
   executeCommand(label) {
