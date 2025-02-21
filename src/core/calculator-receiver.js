@@ -111,12 +111,14 @@ export class CalculatorReceiver {
   }
 
   static percentage() {
-    if (this.storedValue !== null && this.currentOperation !== null) {
-      this.value = String((this.storedValue * Number(this.value)) / 100);
-    } else {
-      this.value = String(Number(this.value) / 100);
-    }
-    this.storedValue = Number(this.value);
+    // if (this.storedValue !== null && this.currentOperation !== null) {
+    //   this.value = String((this.storedValue * Number(this.value)) / 100);
+    // } else {
+    //   this.value = String(Number(this.value) / 100);
+    // }
+    // this.storedValue = Number(this.value);
+    this.currentOperand = this.currentOperand * 0.01;
+    return this.currentOperand;
   }
 
   static performBinaryOperation(operation) {
