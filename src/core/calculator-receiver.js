@@ -64,8 +64,8 @@ export class CalculatorReceiver {
   }
 
   static clearInput() {
-    this.currentOperand = '';
-    this.previousOperand = '';
+    this.currentOperand = INITIAL_VALUE;
+    this.previousOperand = INITIAL_VALUE;
     this.operation = undefined;
   }
 
