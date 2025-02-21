@@ -1,11 +1,15 @@
-import {
-    AddCommand,
-    DivideCommand,
-    MultiplyCommand,
-    OneDividedByXCommand, SquareRootCommand,
-    SubtractCommand,
-    TenPowByXCommand, XCubedCommand, XPowByYCommand, XSquaredCommand, YRootFromXCommand
-} from "./commands.js";
+import {SetValueCommand} from "./commands/set-value-command.js";
+import {SquareRootCommand} from "./commands/square-root-command.js";
+import {OneDividedByXCommand} from "./commands/one-diveded-by-x-command.js";
+import {TenPowByXCommand} from "./commands/ten-pow-by-x-command.js";
+import {XPowByYCommand} from "./commands/x-pow-by-y-command.js";
+import {YRootFromXCommand} from "./commands/x-root-from-y-command.js";
+import {XSquaredCommand} from "./commands/x-squared-command.js";
+import {XCubedCommand} from "./commands/x-cubed-command.js";
+import {DivideCommand} from "./commands/divide-command.js";
+import {AddCommand} from "./commands/add-command.js";
+import {SubtractCommand} from "./commands/substract-command.js";
+import {MultiplyCommand} from "./commands/multiply-command.js";
 
 export class CalculatorClient {
     constructor(invoker) {
@@ -13,6 +17,18 @@ export class CalculatorClient {
     }
 
     setupCommands() {
+        this.invoker.setCommands('0', new SetValueCommand(0));
+        this.invoker.setCommands('1', new SetValueCommand(1));
+        this.invoker.setCommands('2', new SetValueCommand(2));
+        this.invoker.setCommands('3', new SetValueCommand(3));
+        this.invoker.setCommands('4', new SetValueCommand(4));
+        this.invoker.setCommands('5', new SetValueCommand(5));
+        this.invoker.setCommands('6', new SetValueCommand(6));
+        this.invoker.setCommands('7', new SetValueCommand(7));
+        this.invoker.setCommands('8', new SetValueCommand(8));
+        this.invoker.setCommands('9', new SetValueCommand(9));
+        this.invoker.setCommands('.', new SetValueCommand('.'));
+
         this.invoker.setCommands('add', new AddCommand());
         this.invoker.setCommands('subtract', new SubtractCommand());
         this.invoker.setCommands('multiply', new MultiplyCommand());
