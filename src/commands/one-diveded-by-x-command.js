@@ -1,14 +1,8 @@
-import {Command} from "./command.js";
+import { Command } from './command.js';
+import { CalculatorReceiver } from '../core/calculator-receiver.js';
 
 export class OneDividedByXCommand extends Command {
-    execute(prev, curr) {
-        if (prev === 0) {
-            return 'n/a: division by zero';
-        }
-        return 1 / prev;
-    }
-
-    undo(result, curr) {
-        return 1 / result;
-    }
+  execute() {
+    CalculatorReceiver.oneDividedByX();
+  }
 }

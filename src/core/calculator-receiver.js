@@ -56,18 +56,23 @@ export class CalculatorReceiver {
   }
 
   static negate() {
-    if (this.value.startsWith('-')) {
-      this.value = this.value.slice(1);
-    } else {
-      this.value = '-' + this.value;
-    }
-    this.storedValue = Number(this.value);
+    if (this.currentOperand === '') return;
+    this.previousOperand = this.currentOperand.toString();
+    this.currentOperand = (parseFloat(this.currentOperand) * -1).toString();
   }
 
   static clearInput() {
     this.currentOperand = INITIAL_VALUE;
     this.previousOperand = INITIAL_VALUE;
     this.operation = undefined;
+  }
+
+  static oneDividedByX() {
+    if (this.currentOperand === 0) {
+      return 'n/a: division by zero';
+    }
+    this.currentOperand = 1 / this.currentOperand;
+    return this.currentOperand;
   }
 
   static square() {
@@ -101,7 +106,6 @@ export class CalculatorReceiver {
   }
 
   static factorial() {
-    debugger;
     this.currentOperand = String(getFactorial(Number(this.currentOperand)));
     this.previousOperand = Number(this.currentOperand);
   }

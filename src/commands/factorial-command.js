@@ -5,8 +5,4 @@ export class FactorialCommand extends Command {
   execute() {
     CalculatorReceiver.factorial();
   }
-
-  undo(result, curr) {
-    return curr;
-  }
 }

@@ -12,6 +12,7 @@ import { SubtractCommand } from './commands/substract-command.js';
 import { MultiplyCommand } from './commands/multiply-command.js';
 import { ClearInputCommand } from './commands/clear-input-command.js';
 import { FactorialCommand } from './commands/factorial-command.js';
+import { NegateCommand } from './commands/negate-command.js';
 
 export class CalculatorClient {
   constructor(invoker) {
@@ -35,7 +36,7 @@ export class CalculatorClient {
     this.invoker.setCommands('-', new SubtractCommand());
     this.invoker.setCommands('*', new MultiplyCommand());
     this.invoker.setCommands('/', new DivideCommand());
-    //this.invoker.setCommands('sign-change', new NegateCommand()); @todo
+    this.invoker.setCommands('sign-change', new NegateCommand());
     this.invoker.setCommands('clear', new ClearInputCommand());
     this.invoker.setCommands('x-squared', new XSquaredCommand());
     this.invoker.setCommands('x-cubed', new XCubedCommand());
