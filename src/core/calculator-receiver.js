@@ -81,8 +81,8 @@ export class CalculatorReceiver {
   }
 
   static cube() {
-    this.value = String(Number(this.value) ** 3);
-    this.storedValue = Number(this.value);
+    this.storedValue = Number(this.currentOperand);
+    this.currentOperand = String(Number(this.currentOperand) ** 3);
   }
 
   static powerOfTen() {
