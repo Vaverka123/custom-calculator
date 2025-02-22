@@ -76,13 +76,13 @@ export class CalculatorReceiver {
   }
 
   static square() {
-    this.value = String(Number(this.value) ** 2);
-    this.storedValue = Number(this.value);
+    this.previousOperand = Number(this.currentOperand);
+    return (this.currentOperand = String(Number(this.currentOperand) ** 2));
   }
 
   static cube() {
-    this.storedValue = Number(this.currentOperand);
-    this.currentOperand = String(Number(this.currentOperand) ** 3);
+    this.previousOperand = Number(this.currentOperand);
+    return (this.currentOperand = String(Number(this.currentOperand) ** 3));
   }
 
   static powerOfTen() {
