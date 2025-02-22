@@ -15,6 +15,10 @@ import { FactorialCommand } from './commands/factorial-command.js';
 import { NegateCommand } from './commands/negate-command.js';
 import { PercentCommand } from './commands/percent-command.js';
 import { CubeRootCommand } from './commands/cube-root-command.js';
+import { MemoryClearCommand } from './commands/memory-clear-command.js';
+import { MemoryRecallCommand } from './commands/memory-recall-command.js';
+import { MemoryAddCommand } from './commands/memory-add-command.js';
+import { MemorySubstractCommand } from './commands/memory-substract-command.js';
 
 export class CalculatorClient {
   constructor(invoker) {
@@ -51,6 +55,10 @@ export class CalculatorClient {
     this.invoker.setCommands('factorial', new FactorialCommand());
     this.invoker.setCommands('percentage', new PercentCommand());
     this.invoker.setCommands('cube-root-from-x', new CubeRootCommand());
+    this.invoker.setCommands('mc', new MemoryClearCommand());
+    this.invoker.setCommands('mr', new MemoryRecallCommand());
+    this.invoker.setCommands('m+', new MemoryAddCommand());
+    this.invoker.setCommands('m-', new MemorySubstractCommand());
   }
 
   executeCommand(label) {

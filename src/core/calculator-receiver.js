@@ -8,6 +8,9 @@ export class CalculatorReceiver {
   static resultLocked = false;
   static undoStack = [];
   static memory = 0;
+  // this.currentOperation = null;
+  // this.shouldValueUpdate = false;
+  // this.isAfterEqual = true;
 
   static getValue() {
     return Number(this.currentOperand);
@@ -162,14 +165,14 @@ export class CalculatorReceiver {
   }
 
   static addToMemory() {
-    this.memory += Number(this.value);
+    this.memory += Number(this.currentOperand);
   }
 
   static subtractFromMemory() {
-    this.memory -= Number(this.value);
+    this.memory -= Number(this.currentOperand);
   }
 
   static recallMemory() {
-    this.value = String(this.memory);
+    this.currentOperand = String(this.memory);
   }
 }
