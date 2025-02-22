@@ -86,8 +86,16 @@ export class CalculatorReceiver {
   }
 
   static powerOfTen() {
-    this.value = String(10 ** Number(this.value));
-    this.storedValue = Number(this.value);
+    this.previousOperand = Number(this.currentOperand);
+
+    if (this.currentOperand === 0) {
+      return 1;
+    }
+    if (this.currentOperand === 1) {
+      return 10;
+    }
+    this.currentOperand = Math.pow(10, this.currentOperand);
+    return this.currentOperand;
   }
 
   static sqrt() {
