@@ -1,11 +1,8 @@
-import {Command} from "./command.js";
+import { Command } from './command.js';
+import { CalculatorReceiver } from '../core/calculator-receiver.js';
 
 export class CubeRootCommand extends Command {
-    execute(prev, curr) {
-        return prev ** (1 / 3);
-    }
-
-    undo(result, curr) {
-        return Math.round(result * result * result);
-    }
+  execute() {
+    CalculatorReceiver.cubeRoot();
+  }
 }

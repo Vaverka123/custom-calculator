@@ -14,6 +14,7 @@ import { ClearInputCommand } from './commands/clear-input-command.js';
 import { FactorialCommand } from './commands/factorial-command.js';
 import { NegateCommand } from './commands/negate-command.js';
 import { PercentCommand } from './commands/percent-command.js';
+import { CubeRootCommand } from './commands/cube-root-command.js';
 
 export class CalculatorClient {
   constructor(invoker) {
@@ -49,6 +50,7 @@ export class CalculatorClient {
     this.invoker.setCommands('yRootFromX', new YRootFromXCommand());
     this.invoker.setCommands('factorial', new FactorialCommand());
     this.invoker.setCommands('percentage', new PercentCommand());
+    this.invoker.setCommands('cube-root-from-x', new CubeRootCommand());
   }
 
   executeCommand(label) {

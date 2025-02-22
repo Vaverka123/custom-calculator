@@ -104,8 +104,9 @@ export class CalculatorReceiver {
   }
 
   static cubeRoot() {
-    this.value = String(Number(this.value) ** (1 / 3));
-    this.storedValue = Number(this.value);
+    this.previousOperand = Number(this.currentOperand);
+    this.currentOperand = String(Number(this.currentOperand) ** (1 / 3));
+    return this.currentOperand;
   }
 
   static reciprocal() {
