@@ -1,8 +1,8 @@
 import { Command } from './command.js';
 import { CalculatorReceiver } from '../core/calculator-receiver.js';
 
-export class SubtractCommand extends Command {
+export class YRootFromXCommand extends Command {
   execute() {
-    CalculatorReceiver.performBinaryOperation('-');
+    CalculatorReceiver.performBinaryOperation('y-root-from-x');
   }
 }

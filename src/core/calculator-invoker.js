@@ -10,7 +10,7 @@ export class CalculatorInvoker {
 
   executeCommand(label) {
     const command = this.commands[label];
-    // debugger;
+
     command.execute();
     Calculator.updateDisplay(CalculatorReceiver.getValue());
   }

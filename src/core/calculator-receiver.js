@@ -1,22 +1,25 @@
-import { INITIAL_VALUE } from '../constants.js';
 import { getFactorial } from '../utils/get-factorial.js';
+import { calculateResult } from '../utils/calculate-result.js';
 
 export class CalculatorReceiver {
-  static currentOperand = INITIAL_VALUE;
-  static previousOperand = INITIAL_VALUE;
-  static operation = undefined;
+  static currentOperand = '';
+  static previousOperand = '';
+  static currentOperation = undefined;
   static resultLocked = false;
-  static undoStack = [];
   static memory = 0;
-  // this.currentOperation = null;
-  // this.shouldValueUpdate = false;
-  // this.isAfterEqual = true;
+  static lastOperatorWasBinary = false;
+  // let undoStack = [];
 
   static getValue() {
     return Number(this.currentOperand);
   }
 
   static setValue(newValue) {
+    if (this.lastOperatorWasBinary && !isNaN(newValue)) {
+      this.lastOperatorWasBinary = false;
+      this.clearInput();
+    }
+
     if (this.resultLocked) {
       this.clearInput();
       this.resultLocked = false;
@@ -60,14 +63,18 @@ export class CalculatorReceiver {
 
   static negate() {
     if (this.currentOperand === '') return;
-    this.previousOperand = this.currentOperand.toString();
     this.currentOperand = (parseFloat(this.currentOperand) * -1).toString();
+    this.previousOperand = Number(this.currentOperand);
   }
 
   static clearInput() {
-    this.currentOperand = INITIAL_VALUE;
-    this.previousOperand = INITIAL_VALUE;
-    this.operation = undefined;
+    this.currentOperand = '';
+  }
+
+  static allClear() {
+    this.currentOperand = '';
+    this.previousOperand = '';
+    this.currentOperation = undefined;
   }
 
   static oneDividedByX() {
@@ -75,22 +82,20 @@ export class CalculatorReceiver {
       return 'n/a: division by zero';
     }
     this.currentOperand = 1 / this.currentOperand;
-    return this.currentOperand;
+    this.previousOperand = Number(this.currentOperand);
   }
 
   static square() {
+    this.currentOperand = String(Number(this.currentOperand) ** 2);
     this.previousOperand = Number(this.currentOperand);
-    return (this.currentOperand = String(Number(this.currentOperand) ** 2));
   }
 
   static cube() {
+    this.currentOperand = String(Number(this.currentOperand) ** 3);
     this.previousOperand = Number(this.currentOperand);
-    return (this.currentOperand = String(Number(this.currentOperand) ** 3));
   }
 
   static powerOfTen() {
-    this.previousOperand = Number(this.currentOperand);
-
     if (this.currentOperand === 0) {
       return 1;
     }
@@ -98,23 +103,17 @@ export class CalculatorReceiver {
       return 10;
     }
     this.currentOperand = Math.pow(10, this.currentOperand);
-    return this.currentOperand;
+    this.previousOperand = Number(this.currentOperand);
   }
 
   static sqrt() {
     this.currentOperand = this.currentOperand ** 0.5;
-    return this.currentOperand;
+    this.previousOperand = Number(this.currentOperand);
   }
 
   static cubeRoot() {
-    this.previousOperand = Number(this.currentOperand);
     this.currentOperand = String(Number(this.currentOperand) ** (1 / 3));
-    return this.currentOperand;
-  }
-
-  static reciprocal() {
-    this.value = String(getReciprocal(Number(this.value)));
-    this.storedValue = Number(this.value);
+    this.previousOperand = Number(this.currentOperand);
   }
 
   static factorial() {
@@ -123,41 +122,8 @@ export class CalculatorReceiver {
   }
 
   static percentage() {
-    // if (this.storedValue !== null && this.currentOperation !== null) {
-    //   this.value = String((this.storedValue * Number(this.value)) / 100);
-    // } else {
-    //   this.value = String(Number(this.value) / 100);
-    // }
-    // this.storedValue = Number(this.value);
     this.currentOperand = this.currentOperand * 0.01;
-    return this.currentOperand;
-  }
-
-  static performBinaryOperation(operation) {
-    this.isAfterEqual = false;
-
-    if (this.storedValue === null) {
-      this.storedValue = Number(this.value);
-    } else {
-      this.equals();
-    }
-
-    this.currentOperation = operation;
-    this.shouldValueUpdate = true;
-  }
-
-  static equals() {
-    if (this.storedValue !== null && this.currentOperation !== null) {
-      const result = this.currentOperation(
-        this.storedValue,
-        Number(this.value),
-      );
-      this.value = String(result);
-      this.storedValue = result;
-      this.currentOperation = null;
-      this.shouldValueUpdate = false;
-      this.isAfterEqual = true;
-    }
+    this.previousOperand = Number(this.currentOperand);
   }
 
   static clearMemory() {
@@ -174,5 +140,32 @@ export class CalculatorReceiver {
 
   static recallMemory() {
     this.currentOperand = String(this.memory);
+  }
+
+  static performBinaryOperation(op) {
+    if (this.currentOperand === '') {
+      this.currentOperation = op;
+      return;
+    }
+
+    if (this.previousOperand !== '') {
+      return this.equals();
+    }
+    this.currentOperation = op;
+    this.previousOperand = this.currentOperand;
+    this.lastOperatorWasBinary = true;
+  }
+
+  static equals() {
+    if (this.previousOperand !== '' && this.currentOperation !== '') {
+      const result = calculateResult(
+        Number(this.previousOperand),
+        Number(this.currentOperand),
+        this.currentOperation,
+      );
+
+      this.previousOperand = this.currentOperand;
+      this.currentOperand = result;
+    }
   }
 }

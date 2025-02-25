@@ -1,11 +1,8 @@
-import {Command} from "./command.js";
+import { Command } from './command.js';
+import { CalculatorReceiver } from '../core/calculator-receiver.js';
 
 export class AddCommand extends Command {
-    execute(prev, curr) {
-        return prev + curr;
-    }
-
-    undo(result, curr) {
-        return result - curr;
-    }
+  execute() {
+    CalculatorReceiver.performBinaryOperation('+');
+  }
 }

@@ -2,15 +2,14 @@ import { SetValueCommand } from './commands/set-value-command.js';
 import { SquareRootCommand } from './commands/square-root-command.js';
 import { OneDividedByXCommand } from './commands/one-diveded-by-x-command.js';
 import { TenPowByXCommand } from './commands/ten-pow-by-x-command.js';
-import { XPowByYCommand } from './commands/x-pow-by-y-command.js';
-import { YRootFromXCommand } from './commands/x-root-from-y-command.js';
+
 import { XSquaredCommand } from './commands/x-squared-command.js';
 import { XCubedCommand } from './commands/x-cubed-command.js';
 import { DivideCommand } from './commands/divide-command.js';
 import { AddCommand } from './commands/add-command.js';
 import { SubtractCommand } from './commands/substract-command.js';
 import { MultiplyCommand } from './commands/multiply-command.js';
-import { ClearInputCommand } from './commands/clear-input-command.js';
+import { AllClearCommand } from './commands/all-clear-command.js';
 import { FactorialCommand } from './commands/factorial-command.js';
 import { NegateCommand } from './commands/negate-command.js';
 import { PercentCommand } from './commands/percent-command.js';
@@ -19,6 +18,9 @@ import { MemoryClearCommand } from './commands/memory-clear-command.js';
 import { MemoryRecallCommand } from './commands/memory-recall-command.js';
 import { MemoryAddCommand } from './commands/memory-add-command.js';
 import { MemorySubstractCommand } from './commands/memory-substract-command.js';
+import { EqualCommand } from './commands/equal-command.js';
+import { XPowYCommand } from './commands/x-pow-y-command.js';
+import { YRootFromXCommand } from './commands/y-root-from-x-command.js';
 
 export class CalculatorClient {
   constructor(invoker) {
@@ -38,20 +40,15 @@ export class CalculatorClient {
     this.invoker.setCommands('9', new SetValueCommand(9));
     this.invoker.setCommands('.', new SetValueCommand('.'));
 
-    this.invoker.setCommands('+', new AddCommand());
-    this.invoker.setCommands('-', new SubtractCommand());
-    this.invoker.setCommands('*', new MultiplyCommand());
-    this.invoker.setCommands('/', new DivideCommand());
     this.invoker.setCommands('sign-change', new NegateCommand());
-    this.invoker.setCommands('clear', new ClearInputCommand());
+    this.invoker.setCommands('clear', new AllClearCommand());
     this.invoker.setCommands('x-squared', new XSquaredCommand());
     this.invoker.setCommands('x-cubed', new XCubedCommand());
     this.invoker.setCommands('ten-powered-by-x', new TenPowByXCommand());
     this.invoker.setCommands('square-root-from-x', new SquareRootCommand());
     this.invoker.setCommands('one-divided-by-x', new OneDividedByXCommand());
     this.invoker.setCommands('ten-powered-by-x', new TenPowByXCommand());
-    this.invoker.setCommands('xPowByY', new XPowByYCommand());
-    this.invoker.setCommands('yRootFromX', new YRootFromXCommand());
+
     this.invoker.setCommands('factorial', new FactorialCommand());
     this.invoker.setCommands('percentage', new PercentCommand());
     this.invoker.setCommands('cube-root-from-x', new CubeRootCommand());
@@ -59,6 +56,14 @@ export class CalculatorClient {
     this.invoker.setCommands('mr', new MemoryRecallCommand());
     this.invoker.setCommands('m+', new MemoryAddCommand());
     this.invoker.setCommands('m-', new MemorySubstractCommand());
+
+    this.invoker.setCommands('+', new AddCommand());
+    this.invoker.setCommands('-', new SubtractCommand());
+    this.invoker.setCommands('*', new MultiplyCommand());
+    this.invoker.setCommands('/', new DivideCommand());
+    this.invoker.setCommands('equal', new EqualCommand());
+    this.invoker.setCommands('y-root-from-x', new YRootFromXCommand());
+    this.invoker.setCommands('x-pow-y', new XPowYCommand());
   }
 
   executeCommand(label) {
