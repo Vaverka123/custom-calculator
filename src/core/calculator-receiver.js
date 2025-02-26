@@ -151,6 +151,7 @@ export class CalculatorReceiver {
     if (this.previousOperand !== '') {
       return this.equals();
     }
+
     this.currentOperation = op;
     this.previousOperand = this.currentOperand;
     this.lastOperatorWasBinary = true;
