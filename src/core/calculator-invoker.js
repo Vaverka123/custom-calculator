@@ -5,7 +5,6 @@ export class CalculatorInvoker {
   commands = {};
 
   setCommands(label, comand) {
-    //123
     this.commands[label] = comand;
   }
 
@@ -13,6 +12,7 @@ export class CalculatorInvoker {
     const command = this.commands[label];
 
     command.execute();
+    // debugger;
     Calculator.updateDisplay(CalculatorReceiver.getValue());
   }
 }

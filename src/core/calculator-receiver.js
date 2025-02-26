@@ -1,5 +1,4 @@
 import { getFactorial } from '../utils/get-factorial.js';
-import { calculateResult } from '../utils/calculate-result.js';
 
 export class CalculatorReceiver {
   static currentOperand = '';
@@ -74,7 +73,7 @@ export class CalculatorReceiver {
   static allClear() {
     this.currentOperand = '';
     this.previousOperand = '';
-    this.currentOperation = undefined;
+    this.currentOperation = null;
   }
 
   static oneDividedByX() {
@@ -142,31 +141,33 @@ export class CalculatorReceiver {
     this.currentOperand = String(this.memory);
   }
 
-  static performBinaryOperation(op) {
-    if (this.currentOperand === '') {
-      this.currentOperation = op;
-      return;
+  static performBinaryOperation(operation) {
+    // this.isAfterEqual = false;
+    // debugger;
+    if (this.previousOperand === '') {
+      // debugger;
+      this.previousOperand = Number(this.currentOperand);
+      this.currentOperand = '';
+    } else {
+      this.equals();
     }
 
-    if (this.previousOperand !== '') {
-      return this.equals();
-    }
-
-    this.currentOperation = op;
-    this.previousOperand = this.currentOperand;
-    this.lastOperatorWasBinary = true;
+    this.currentOperation = operation;
+    // this.shouldValueUpdate = true;
   }
 
   static equals() {
-    if (this.previousOperand !== '' && this.currentOperation !== '') {
-      const result = calculateResult(
-        Number(this.previousOperand),
+    if (this.previousOperand !== '' && this.currentOperation !== null) {
+      const result = this.currentOperation(
+        this.previousOperand,
         Number(this.currentOperand),
-        this.currentOperation,
       );
-
-      this.previousOperand = this.currentOperand;
-      this.currentOperand = result;
+      console.log('result', result);
+      this.value = String(result);
+      this.previousOperand = result;
+      this.currentOperation = null;
+      // this.shouldValueUpdate = false;
+      // this.isAfterEqual = true;
     }
   }
 }
