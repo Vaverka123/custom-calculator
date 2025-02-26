@@ -5,10 +5,6 @@ import { TenPowByXCommand } from './commands/ten-pow-by-x-command.js';
 
 import { XSquaredCommand } from './commands/x-squared-command.js';
 import { XCubedCommand } from './commands/x-cubed-command.js';
-import { DivideCommand } from './commands/divide-command.js';
-import { AddCommand } from './commands/add-command.js';
-import { SubtractCommand } from './commands/substract-command.js';
-import { MultiplyCommand } from './commands/multiply-command.js';
 import { AllClearCommand } from './commands/all-clear-command.js';
 import { FactorialCommand } from './commands/factorial-command.js';
 import { NegateCommand } from './commands/negate-command.js';
@@ -21,6 +17,7 @@ import { MemorySubstractCommand } from './commands/memory-substract-command.js';
 import { EqualCommand } from './commands/equal-command.js';
 import { XPowYCommand } from './commands/x-pow-y-command.js';
 import { YRootFromXCommand } from './commands/y-root-from-x-command.js';
+import { BinaryOperationCommand } from './commands/binary-operation-command.js';
 
 export class CalculatorClient {
   constructor(invoker) {
@@ -57,10 +54,10 @@ export class CalculatorClient {
     this.invoker.setCommands('m+', new MemoryAddCommand());
     this.invoker.setCommands('m-', new MemorySubstractCommand());
 
-    this.invoker.setCommands('+', new AddCommand());
-    this.invoker.setCommands('-', new SubtractCommand());
-    this.invoker.setCommands('*', new MultiplyCommand());
-    this.invoker.setCommands('/', new DivideCommand());
+    this.invoker.setCommands('+', new BinaryOperationCommand((a, b) => a + b));
+    this.invoker.setCommands('-', new BinaryOperationCommand((a, b) => a - b));
+    this.invoker.setCommands('*', new BinaryOperationCommand((a, b) => a * b));
+    this.invoker.setCommands('/', new BinaryOperationCommand((a, b) => a / b));
     this.invoker.setCommands('equal', new EqualCommand());
     this.invoker.setCommands('y-root-from-x', new YRootFromXCommand());
     this.invoker.setCommands('x-pow-y', new XPowYCommand());
