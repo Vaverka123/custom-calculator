@@ -4,10 +4,11 @@ export class CalculatorReceiver {
   static currentOperand = '';
   static previousOperand = '';
   static currentOperation = undefined;
-  static resultLocked = false;
+  //static resultLocked = false;
   static memory = 0;
   static lastOperatorWasBinary = false;
   // let undoStack = [];
+  static isAfterEqual = false;
 
   static getValue() {
     return Number(this.currentOperand);
@@ -141,33 +142,43 @@ export class CalculatorReceiver {
     this.currentOperand = String(this.memory);
   }
 
-  static performBinaryOperation(operation) {
-    // this.isAfterEqual = false;
-    // debugger;
+  static performBinaryOperation(op) {
+    this.isAfterEqual = false;
+    this.lastOperatorWasBinary = true;
     if (this.previousOperand === '') {
-      // debugger;
       this.previousOperand = Number(this.currentOperand);
-      this.currentOperand = '';
+      //  this.currentOperand = '';
     } else {
       this.equals();
     }
-
-    this.currentOperation = operation;
-    // this.shouldValueUpdate = true;
+    this.currentOperation = op;
   }
 
   static equals() {
-    if (this.previousOperand !== '' && this.currentOperation !== null) {
+    if (
+      this.previousOperand !== '' &&
+      this.currentOperation !== '' &&
+      this.currentOperand !== ''
+    ) {
+      if (this.isAfterEqual) {
+        debugger;
+        this.previousOperand = this.currentOperand;
+      }
+      console.log('Current Operation', this.currentOperation);
+      console.log('Previous Operand', this.previousOperand);
+      console.log('Current Operand', this.currentOperand);
       const result = this.currentOperation(
-        this.previousOperand,
+        Number(this.previousOperand),
         Number(this.currentOperand),
       );
-      console.log('result', result);
-      this.value = String(result);
-      this.previousOperand = result;
-      this.currentOperation = null;
-      // this.shouldValueUpdate = false;
-      // this.isAfterEqual = true;
+
+      if (this.isAfterEqual) {
+        // this.previousOperand = result;
+      } else {
+        this.currentOperand = String(result);
+      }
+
+      this.isAfterEqual = true;
     }
   }
 }
