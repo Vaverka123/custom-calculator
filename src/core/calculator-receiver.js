@@ -81,7 +81,7 @@ export class CalculatorReceiver {
     if (this.currentOperand === 0) {
       return 'n/a: division by zero';
     }
-    this.currentOperand = 1 / this.currentOperand;
+    this.currentOperand = String(1 / Number(this.currentOperand));
     this.previousOperand = Number(this.currentOperand);
   }
 
@@ -97,17 +97,17 @@ export class CalculatorReceiver {
 
   static powerOfTen() {
     if (this.currentOperand === 0) {
-      return 1;
+      return '1';
     }
     if (this.currentOperand === 1) {
-      return 10;
+      return '10';
     }
-    this.currentOperand = Math.pow(10, this.currentOperand);
+    this.currentOperand = String(Math.pow(10, Number(this.currentOperand)));
     this.previousOperand = Number(this.currentOperand);
   }
 
   static sqrt() {
-    this.currentOperand = this.currentOperand ** 0.5;
+    this.currentOperand = String(Number(this.currentOperand) ** 0.5);
     this.previousOperand = Number(this.currentOperand);
   }
 
@@ -122,7 +122,7 @@ export class CalculatorReceiver {
   }
 
   static percentage() {
-    this.currentOperand = this.currentOperand * 0.01;
+    this.currentOperand = String(Number(this.currentOperand) * 0.01);
     this.previousOperand = Number(this.currentOperand);
   }
 
@@ -164,8 +164,8 @@ export class CalculatorReceiver {
         this.currentOperation,
       );
 
-      this.previousOperand = this.currentOperand;
-      this.currentOperand = result;
+      this.previousOperand = Number(this.currentOperand);
+      this.currentOperand = String(result);
     }
   }
 }
