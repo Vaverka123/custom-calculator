@@ -5,6 +5,7 @@ export class CalculatorInvoker {
   commands = {};
 
   setCommands(label, comand) {
+    //123
     this.commands[label] = comand;
   }
 
