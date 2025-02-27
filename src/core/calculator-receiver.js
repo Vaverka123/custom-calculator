@@ -9,6 +9,8 @@ export class CalculatorReceiver {
   static lastOperatorWasBinary = false;
   // let undoStack = [];
   static isAfterEqual = false;
+  static shouldStoredValueUpdate = true;
+  static storedValue = '';
 
   static getValue() {
     return Number(this.currentOperand);
@@ -19,23 +21,17 @@ export class CalculatorReceiver {
       this.lastOperatorWasBinary = false;
       this.clearInput();
     }
-
-    if (this.resultLocked) {
-      this.clearInput();
-      this.resultLocked = false;
-    }
-
+    // handle leading zeros
     if (this.currentOperand === '' && newValue === '00') return;
     if (this.currentOperand === '0' && newValue === '00') return;
     if (this.currentOperand === '0' && newValue === '0') return;
     if (this.currentOperand.includes('.') && newValue === '.') return;
 
-    if (this.currentOperand === '' && newValue === '0') {
-      this.currentOperand = '0';
-      return this.currentOperand;
-    }
-
-    if (this.currentOperand === '0' && newValue === '.') {
+    // handle decimal point
+    if (
+      (this.currentOperand === '0' || this.currentOperand === '') &&
+      newValue === '.'
+    ) {
       this.currentOperand = '0.';
       return this.currentOperand;
     }
@@ -45,16 +41,6 @@ export class CalculatorReceiver {
       (this.currentOperand === '0' && newValue !== '00')
     ) {
       this.currentOperand = newValue.toString();
-      return this.currentOperand;
-    }
-
-    if (this.currentOperand === '' && newValue === '.') {
-      this.currentOperand = '0.';
-      return this.currentOperand;
-    }
-
-    if (this.currentOperand.length < 20) {
-      this.currentOperand = this.currentOperand + newValue.toString();
       return this.currentOperand;
     }
 
@@ -144,10 +130,12 @@ export class CalculatorReceiver {
 
   static performBinaryOperation(op) {
     this.isAfterEqual = false;
+    this.shouldStoredValueUpdate = true;
     this.lastOperatorWasBinary = true;
+
     if (this.previousOperand === '') {
       this.previousOperand = Number(this.currentOperand);
-      //  this.currentOperand = '';
+      this.currentOperand = '';
     } else {
       this.equals();
     }
@@ -160,24 +148,31 @@ export class CalculatorReceiver {
       this.currentOperation !== '' &&
       this.currentOperand !== ''
     ) {
-      if (this.isAfterEqual) {
-        debugger;
-        this.previousOperand = this.currentOperand;
-      }
+      // if (this.isAfterEqual) {
+      // debugger;
+      // this.previousOperand = result;
+      // }
       console.log('Current Operation', this.currentOperation);
       console.log('Previous Operand', this.previousOperand);
       console.log('Current Operand', this.currentOperand);
+
+      if (this.shouldStoredValueUpdate) {
+        this.storedValue = this.currentOperand;
+        this.shouldStoredValueUpdate = false;
+      } else {
+      }
       const result = this.currentOperation(
         Number(this.previousOperand),
-        Number(this.currentOperand),
+        Number(this.storedValue),
       );
 
-      if (this.isAfterEqual) {
-        // this.previousOperand = result;
-      } else {
-        this.currentOperand = String(result);
-      }
-
+      // if (this.isAfterEqual) {
+      //   // this.previousOperand = result;
+      // } else {
+      //   //this.currentOperand = String(result);
+      // }
+      this.previousOperand = result;
+      this.currentOperand = String(result);
       this.isAfterEqual = true;
     }
   }
