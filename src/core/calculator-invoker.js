@@ -12,7 +12,7 @@ export class CalculatorInvoker {
     const command = this.commands[label];
 
     command.execute();
-    // debugger;
+
     Calculator.updateDisplay(CalculatorReceiver.getValue());
   }
 }

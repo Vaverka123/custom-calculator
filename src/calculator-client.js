@@ -59,8 +59,14 @@ export class CalculatorClient {
     this.invoker.setCommands('*', new BinaryOperationCommand((a, b) => a * b));
     this.invoker.setCommands('/', new BinaryOperationCommand((a, b) => a / b));
     this.invoker.setCommands('equal', new EqualCommand());
-    this.invoker.setCommands('y-root-from-x', new YRootFromXCommand());
-    this.invoker.setCommands('x-pow-y', new XPowYCommand());
+    this.invoker.setCommands(
+      'y-root-from-x',
+      new BinaryOperationCommand((a, b) => a ** (1 / b)),
+    );
+    this.invoker.setCommands(
+      'x-pow-y',
+      new BinaryOperationCommand((a, b) => a ** b),
+    );
   }
 
   executeCommand(label) {
