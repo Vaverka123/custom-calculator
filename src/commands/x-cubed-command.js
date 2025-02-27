@@ -1,0 +1,8 @@
+import { Command } from './command.js';
+import { CalculatorReceiver } from '../core/calculator-receiver.js';
+
+export class XCubedCommand extends Command {
+  execute() {
+    CalculatorReceiver.cube();
+  }
+}

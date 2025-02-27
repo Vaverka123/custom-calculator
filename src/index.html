@@ -19,31 +19,23 @@
         />
       </div>
 
-      <button class="calc-button special-buttons mc" data-type="memory-clear">
-        MC
-      </button>
-      <button class="calc-button special-buttons mr" data-type="memory-recall">
-        MR
-      </button>
-      <button class="calc-button special-buttons m-plus" data-type="memory-add">
+      <button class="calc-button special-buttons mc" data-value="mc">MC</button>
+      <button class="calc-button special-buttons mr" data-value="mr">MR</button>
+      <button class="calc-button special-buttons m-plus" data-value="m+">
         M+
       </button>
-      <button
-        class="calc-button special-buttons m-minus"
-        data-type="memory-subtract"
-      >
+      <button class="calc-button special-buttons m-minus" data-value="m-">
         M-
       </button>
       <button
         class="calc-button special-buttons sign-change"
-        data-type="sign-change"
+        data-value="sign-change"
       >
         +/-
       </button>
       <button
         class="calc-button special-buttons percent"
-        data-type="solo"
-        data-value="get-percent"
+        data-value="percentage"
       >
         %
       </button>
@@ -57,22 +49,16 @@
 
       <button
         class="calc-button special-buttons x-squared"
-        data-type="solo"
         data-value="x-squared"
       >
         x&sup2;
       </button>
-      <button
-        class="calc-button special-buttons x-cubed"
-        data-type="solo"
-        data-value="x-cubed"
-      >
+      <button class="calc-button special-buttons x-cubed" data-value="x-cubed">
         x&sup3;
       </button>
       <button
         class="calc-button special-buttons x-to-the-power-of-y"
-        data-type="operator"
-        data-value="x-to-the-power-of-y"
+        data-value="x-pow-y"
       >
         x
         <sup>y</sup>
@@ -108,21 +94,18 @@
 
       <button
         class="calc-button special-buttons factorial-btn"
-        data-type="solo"
-        data-value="factorial-btn"
+        data-value="factorial"
       >
         x!
       </button>
       <button
         class="calc-button special-buttons one-divided-by-x"
-        data-type="solo"
         data-value="one-divided-by-x"
       >
         1/x
       </button>
       <button
         class="calc-button special-buttons ten-powered-by-x"
-        data-type="solo"
         data-value="ten-powered-by-x"
       >
         10
@@ -155,14 +138,12 @@
 
       <button
         class="calc-button special-buttons square-root-from-x"
-        data-type="solo"
         data-value="square-root-from-x"
       >
         &Sqrt;x
       </button>
       <button
         class="calc-button special-buttons cube-root-from-x"
-        data-type="solo"
         data-value="cube-root-from-x"
       >
         <sup>3</sup>
@@ -170,7 +151,6 @@
       </button>
       <button
         class="calc-button special-buttons y-root-from-x"
-        data-type="operator"
         data-value="y-root-from-x"
       >
         <sup>y</sup>
@@ -189,33 +169,25 @@
       >
         3
       </button>
-      <button
-        class="calc-button orange-buttons add-sign"
-        data-type="operator"
-        data-value="+"
-      >
+      <button class="calc-button orange-buttons add-sign" data-value="+">
         +
       </button>
       <button
         class="calc-button orange-buttons color-theme"
         data-type="color-theme"
         data-testid="themeBtn"
+        data-value="theme-toggle"
       >
         🌈
       </button>
-      <button class="calc-button orange-buttons ac" data-type="clear">
+      <button
+        class="calc-button orange-buttons ac"
+        data-type="clear"
+        data-value="clear"
+      >
         AC
       </button>
-      <button class="calc-button orange-buttons undo" data-type="undo">
-        &#8617;
-      </button>
-      <button
-        class="calc-button numbers double-zero"
-        data-type="number"
-        data-value="00"
-      >
-        00
-      </button>
+
       <button
         class="calc-button numbers zero"
         data-type="number"
@@ -226,7 +198,7 @@
       <button class="calc-button numbers dot" data-type="number" data-value=".">
         .
       </button>
-      <button class="calc-button orange-buttons equal" data-type="equal">
+      <button class="calc-button orange-buttons equal" data-value="equal">
         =
       </button>
     </div>
